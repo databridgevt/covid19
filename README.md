@@ -7,4 +7,5 @@ Data analysis of the 2020 COVID-19 pandemic
 
 - **[Chrissi Taylor]()**: First-year student at Virginia Tech majoring in CMDA. Familiar with Python and interested in Machine Learning. 
 
+- **[Kelsie King](https://github.com/kelsieking23)**: Masters student in the [Virginia Tech Department of Biochemistry](https://www.biochem.vt.edu/) using computational methods to inform drug discovery for amyloid diseaes.
 
