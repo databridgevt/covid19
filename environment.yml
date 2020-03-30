@@ -1,0 +1,30 @@
+name: db_covid19
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1
+  - _openmp_mutex=4.5
+  - beautifulsoup4=4.8.2
+  - ca-certificates=2019.11.28
+  - certifi=2019.11.28
+  - ld_impl_linux-64=2.34
+  - libffi=3.2.1
+  - libgcc-ng=9.2.0
+  - libgomp=9.2.0
+  - libstdcxx-ng=9.2.0
+  - ncurses=6.1
+  - openssl=1.1.1e
+  - pip=20.0.2
+  - python=3.8.2
+  - python_abi=3.8
+  - readline=8.0
+  - setuptools=46.1.3
+  - sqlite=3.30.1
+  - tk=8.6.10
+  - wheel=0.34.2
+  - xz=5.2.4
+  - zlib=1.2.11
+  - pip:
+    - soupsieve==2.0
+
