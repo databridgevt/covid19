@@ -13,3 +13,4 @@ Data analysis of the 2020 COVID-19 pandemic
 
 - **[Somya Jain]()**: Freshman at Virginia Tech majoring in CMDA.
 
+- **[Mitch Dolby]()**: Freshman at Virginia Tech currently majoring in Geography. Interested in geospatial sciences.
