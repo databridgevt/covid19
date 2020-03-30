@@ -9,4 +9,4 @@ Data analysis of the 2020 COVID-19 pandemic
 
 - **[Kelsie King](https://github.com/kelsieking23)**: Masters student in the [Virginia Tech Department of Biochemistry](https://www.biochem.vt.edu/) using computational methods to inform drug discovery for amyloid diseaes.
 
-- **[Makhsuda Ibragimova]()**: Undergraduate student at Virginia Tech majoring in CMDA. Doing research on energy sources and having zoom meetings every day :simple_smile: . Interested in doing research about COVID-19.  
+- **[Makhsuda Ibragimova]()**: Undergraduate student at Virginia Tech majoring in CMDA. Doing research on energy sources and having zoom meetings every day :). Interested in doing research about COVID-19.  
