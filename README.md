@@ -12,3 +12,8 @@ Data analysis of the 2020 COVID-19 pandemic
 - **[Makhsuda Ibragimova]()**: Undergraduate student at Virginia Tech majoring in CMDA. Doing research on energy sources and having zoom meetings every day :). Interested in doing research about COVID-19.  
 
 - **[Somya Jain]()**: Freshman at Virginia Tech majoring in CMDA.
+
+- **[Mitch Dolby]()**: Freshman at Virginia Tech currently majoring in Geography. Interested in geospatial sciences.
+
+
+- **[Ben Rayden]()**: Junior at Virginia Tech majoring in CMDA.
