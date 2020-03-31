@@ -1,6 +1,14 @@
 # covid19
 Data analysis of the 2020 COVID-19 pandemic
 
+## Datasets
+
+The Call to action and Kaggle datasets:
+
+- [White House Call to Action](https://www.whitehouse.gov/briefings-statements/call-action-tech-community-new-machine-readable-covid-19-dataset/?utm_source=link&utm_medium=header)
+- [Kaggle Dataset](https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge)
+- [Allen Institute Semantic Scholar Dataset](https://pages.semanticscholar.org/coronavirus-research)
+
 ## Team
 
 - **[Daniel Chen](https://daniel.rbind.io/)**: PhD student at Virginia Tech in [GBCB](https://gbcb.graduateschool.vt.edu/) studing data science and data literacy education in medical, biomedical, and health sciences.
