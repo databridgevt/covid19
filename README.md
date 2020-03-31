@@ -17,3 +17,5 @@ Data analysis of the 2020 COVID-19 pandemic
 
 
 - **[Ben Rayden]()**: Junior at Virginia Tech majoring in CMDA.
+
+- **[Loveish Sarolia](https://github.com/loveishsarolia)**: Freshman student at Virginia Tech majoring in [Computational Modeling and Data Analytics](https://vt.edu/academics/majors/computational-modeling-and-data-analytics.html) as well as [Economics](https://econ.vt.edu/). Interested in economic analysis and blockchain development.
