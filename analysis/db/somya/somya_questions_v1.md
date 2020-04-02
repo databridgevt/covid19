@@ -1,0 +1,2 @@
+I was thinking about looking into risk factors for COVID-19. Maybe which ones are most talked about or looked into?
+Something simple to start with might be looking at just the abstracts of a few files and seeing what risk factors they mention and then keeping track of the count.
