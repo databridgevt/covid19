@@ -12,4 +12,3 @@ dependencies:
   - make=4.3
   - pip:
     - soupsieve==2.0
-
