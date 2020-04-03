@@ -7,8 +7,9 @@ dependencies:
   - kaggle=1.5.6
   - pip=20.0.2
   - python=3.8.2
-  - pyprojroot=1.0.1
+  - pyprojroot=0.2.0
   - pyyaml=5.3.1
+  - make=4.3
   - pip:
     - soupsieve==2.0
 
