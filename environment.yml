@@ -5,6 +5,7 @@ channels:
 dependencies:
   - beautifulsoup4=4.8.2
   - kaggle=1.5.6
+  - pandas=1.0.3
   - pip=20.0.2
   - python=3.8.2
   - pyprojroot=0.2.0
