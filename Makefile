@@ -29,7 +29,7 @@ update:
 data_kaggle:
 	kaggle datasets download allen-institute-for-ai/CORD-19-research-challenge -p ./data/db/original/kaggle --unzip
 
-## data_kaggle     : downloads he kaggle source data for the repository
+## data_kgl_text   : parses the kaggle json files
 .PHONY: data_kgl_text
 data_kgl_text:
 	python ./analysis/db/dan/load_data.py
