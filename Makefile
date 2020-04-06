@@ -22,7 +22,7 @@ setup:
 .PHONY: update_env
 update:
 	conda activate db_covid19
-	conda update --file environment.yml
+	conda env update --file environment.yml
 
 ## data_kaggle     : downloads he kaggle source data for the repository
 .PHONY: data_kaggle
