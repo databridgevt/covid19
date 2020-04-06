@@ -1,6 +1,32 @@
 # covid19
 Data analysis of the 2020 COVID-19 pandemic
 
+## Update instructions
+
+### Update the conda environment
+
+Run the conda environment update commands with:
+
+```
+conda activate db_covid19
+conda update --file environment.yml
+```
+
+There's a make target for you to make this easier: `make update_env`
+
+### Update your code/repository
+
+Before you start on a new branch, make sure your repository is updated with the lastest `master` code:
+
+```
+git checkout master
+git pull origin master
+```
+
+## The Makefile
+
+The `Makefile` is a convenient way to execute a bunch of commands, you can run `make all` or simply `make` and it will give you a print out of the targets and what they do.
+
 ## Datasets
 
 The Call to action and Kaggle datasets:
