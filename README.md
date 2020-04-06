@@ -9,7 +9,7 @@ Run the conda environment update commands with:
 
 ```
 conda activate db_covid19
-conda update --file environment.yml
+conda env update --file environment.yml
 ```
 
 There's a make target for you to make this easier: `make update_env`
