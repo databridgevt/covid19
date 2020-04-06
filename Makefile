@@ -24,7 +24,12 @@ update:
 	conda activate db_covid19
 	conda update --file environment.yml
 
-## data            : downloads all the source data for the repository
-.PHONY: data
-data:
+## data_kaggle     : downloads he kaggle source data for the repository
+.PHONY: data_kaggle
+data_kaggle:
 	kaggle datasets download allen-institute-for-ai/CORD-19-research-challenge -p ./data/db/original/kaggle --unzip
+
+## data_kaggle     : downloads he kaggle source data for the repository
+.PHONY: data_kgl_text
+data_kgl_text:
+	python ./analysis/db/dan/load_data.py
