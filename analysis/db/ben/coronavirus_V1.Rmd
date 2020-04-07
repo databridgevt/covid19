@@ -1,0 +1,18 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(jsonlite)
+yelp <- fromJSON("/Users/benrayden/Desktop/CDCResearch/CORD-19-research-challenge/comm_use_subset/comm_use_subset/0a00a6df208e068e7aa369fb94641434ea0e6070.json")
+#q <- stream_in(file("/Users/benrayden/Desktop/CDCResearch/CORD-19-research-challenge/comm_use_subset/comm_use_subset/0a00a6df208e068e7aa369fb94641434ea0e6070.json"))
+yelp
+```
+
+
+
