@@ -1,5 +1,6 @@
 import pathlib as pl
 import json
+import sys
 
 import pandas as pd
 from tqdm import tqdm
@@ -37,10 +38,13 @@ def extract_paper_data(json_pth):
     )
     return(paper_data)
 
-fs = here("./data/db/original/kaggle/comm_use_subset/comm_use_subset/pdf_json").iterdir()
+hr = here("./data/db/original/kaggle/comm_use_subset/comm_use_subset/pdf_json/")
+fs = hr.iterdir()
 
-# fs = list(fs)
-fs = list(fs)
+try:
+    fs = list(fs)
+except FileNotFoundError:
+    sys.exit(f"Could not find {hr}, did you forget to update the Kaggle dataset?")
 
 papers = pd.concat(
     [extract_paper_data(jsn) for jsn in tqdm(fs)]
