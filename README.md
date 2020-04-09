@@ -1,6 +1,27 @@
 # covid19
 Data analysis of the 2020 COVID-19 pandemic
 
+## Getting Started
+
+See [this issue](https://github.com/databridgevt/covid19/issues/3) to get started
+
+## Datasets
+
+The Call to action and Kaggle datasets:
+
+- [White House Call to Action](https://www.whitehouse.gov/briefings-statements/call-action-tech-community-new-machine-readable-covid-19-dataset/?utm_source=link&utm_medium=header)
+- [Kaggle Dataset](https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge)
+- [Allen Institute Semantic Scholar Dataset](https://pages.semanticscholar.org/coronavirus-research)
+
+## Download data
+
+See [this issue](https://github.com/databridgevt/covid19/issues/3) to download the kaggle dataset
+
+## What are we working on?
+
+[This issue](https://github.com/databridgevt/covid19/issues/4) links to the initial student project proposals.
+But they can also be found in the `analysis/db/*/README.md` files
+
 ## Update instructions
 
 ### Update the conda environment
@@ -27,21 +48,15 @@ git pull origin master
 
 The `Makefile` is a convenient way to execute a bunch of commands, you can run `make all` or simply `make` and it will give you a print out of the targets and what they do.
 
-## Datasets
-
-The Call to action and Kaggle datasets:
-
-- [White House Call to Action](https://www.whitehouse.gov/briefings-statements/call-action-tech-community-new-machine-readable-covid-19-dataset/?utm_source=link&utm_medium=header)
-- [Kaggle Dataset](https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge)
-- [Allen Institute Semantic Scholar Dataset](https://pages.semanticscholar.org/coronavirus-research)
-
 ## Team
 
-- Project Lead: **[Daniel Chen](https://daniel.rbind.io/)**: PhD student at Virginia Tech in [GBCB](https://gbcb.graduateschool.vt.edu/) studing data science and data literacy education in medical, biomedical, and health sciences.
+Introduce yourself [here](https://github.com/databridgevt/covid19/issues/1)
+
+- Project Lead: **[Daniel Chen](https://daniel.rbind.io/)**: PhD student at Virginia Tech in [GBCB](https://gbcb.graduateschool.vt.edu/) studying data science and data literacy education in medical, biomedical, and health sciences.
 
 - Molecular Dynamics Lead: **[Kelsie King](https://github.com/kelsieking23)**: Masters student in the [Virginia Tech Department of Biochemistry](https://www.biochem.vt.edu/) using computational methods to inform drug discovery for amyloid diseaes.
 
-- **Makhsuda Ibragimova**: Undergraduate student at Virginia Tech majoring in CMDA. Doing research on energy sources and having zoom meetings every day :). Interested in doing research about COVID-19.  
+- **Makhsuda Ibragimova**: Undergraduate student at Virginia Tech majoring in CMDA. Doing research on energy sources and having zoom meetings every day :). Interested in doing research about COVID-19.
 
 - **Ben Rayden**: Junior at Virginia Tech majoring in CMDA.
 
