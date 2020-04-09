@@ -20,37 +20,75 @@ def extract_abstract_text(paper_json, **kwargs):
     abstract_text = extract_paper_component(paper_json, **kwargs)
     return(abstract_text)
 
-def extract_paper_data(json_pth):
+def extract_paper_data(json_pth, folder_mode):
     with open(json_pth) as f:
         data = json.load(f)
+    # pdf_json has an abstract section
+    # pmc_json does not have an abstract section
+    # the rest appear to be the same
 
+    # get the common json sections
     paper_text = extract_body_text(data, section_key="body_text", text_key="text")
-    abstract_text = extract_abstract_text(data, section_key="abstract", text_key="text")
     pid = data['paper_id']
     title = data['metadata']['title']
     num_authors = len(data['metadata']['authors'])
 
-    paper_data = pd.DataFrame(
-        data = [
-            [pid, num_authors, title, abstract_text, paper_text]
-        ],
-        columns = ["pid", "num_authors", "title", "abstract", "text"]
-    )
-    return(paper_data)
+    if folder_mode == "pdf_json":
+        abstract_text = extract_abstract_text(data, section_key="abstract", text_key="text")
+        paper_data = pd.DataFrame(
+            data = [
+                [pid, num_authors, title, abstract_text, paper_text]
+            ],
+            columns = ["pid", "num_authors", "title", "abstract", "text"]
+        )
+        return(paper_data)
+    elif folder_mode == "pmc_json":
+        paper_data = pd.DataFrame(
+            data = [
+                [pid, num_authors, title, paper_text]
+            ],
+            columns = ["pid", "num_authors", "title", "text"]
+        )
+        return(paper_data)
+    else:
+        raise ValueError(f"Unknown value passed into 'folder_mode': {folder_mode}")
 
-hr = here("./data/db/original/kaggle/comm_use_subset/comm_use_subset/pdf_json/")
-fs = hr.iterdir()
+data_sources = [
+    "biorxiv_medrxiv",
+    "comm_use_subset",
+    "noncomm_use_subset",
+]
 
-try:
-    fs = list(fs)
-except FileNotFoundError:
-    sys.exit(f"Could not find {hr}, did you forget to update the Kaggle dataset?")
+datpb = tqdm([data_sources[1]])
+for dat_source in datpb: # for each data source
+    datpb.set_description(f"{dat_source}")
 
-papers = pd.concat(
-    [extract_paper_data(jsn) for jsn in tqdm(fs)]
-)
+    ds_hr = here(f"./data/db/original/kaggle/{dat_source}/{dat_source}/", warn=False)
+    fdrs = list(ds_hr.iterdir())
 
-papers.info()
+    # print(f"\n\n{dat_source}")
 
-pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
-papers.to_csv(here("./data/db/final/kaggle/paper_text/comm_use_subset.tsv"), sep="\t", header=True, index=False)
+    gppb = tqdm(fdrs)
+    for gp in gppb: # for each group path
+        #if gp.name == "pmc_json": continue
+        gppb.set_description(f"{dat_source}/{gp.name}")
+
+        #print(f"\n\n{gp}")
+
+        #gp_hr = here(f"./data/db/original/kaggle/{dat_source}/{dat_source}/{gp}", warn=False)
+        fs = gp.iterdir()
+
+        try:
+            fs = list(fs)
+        except FileNotFoundError:
+            sys.exit(f"Could not find {gp_hr}, did you forget to update the Kaggle dataset?")
+
+        papers = pd.concat(
+            [extract_paper_data(jsn, folder_mode=gp.name) for jsn in tqdm(fs)]
+        )
+
+        #papers.info()
+
+        pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
+        papers.to_csv(here(f"./data/db/final/kaggle/paper_text/{dat_source}_{gp.name}.tsv", warn=False),
+                    sep="\t", header=True, index=False)
