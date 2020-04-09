@@ -37,9 +37,7 @@ def extract_paper_data(json_pth):
     )
     return(paper_data)
 
-p = here()
-
-fs = here("./data/db/original/kaggle/comm_use_subset/comm_use_subset").iterdir()
+fs = here("./data/db/original/kaggle/comm_use_subset/comm_use_subset/pdf_json").iterdir()
 
 # fs = list(fs)
 fs = list(fs)
