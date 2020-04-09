@@ -1,5 +1,7 @@
 .DS_Store
 
+environ.yaml
+
 # ignore data folder by default
 data/
 
