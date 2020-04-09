@@ -7,18 +7,22 @@ from tqdm import tqdm
 
 from pyprojroot import here
 
+
 def extract_paper_component(paper_json, section_key, text_key="text", line_delim="\n"):
     section_text = map(lambda x: x[text_key], paper_json[section_key])
     text = line_delim.join(section_text)
     return(text)
 
+
 def extract_body_text(paper_json, **kwargs):
     paper_text = extract_paper_component(paper_json, **kwargs)
     return(paper_text)
 
+
 def extract_abstract_text(paper_json, **kwargs):
     abstract_text = extract_paper_component(paper_json, **kwargs)
     return(abstract_text)
+
 
 def extract_paper_data(json_pth, folder_mode):
     with open(json_pth) as f:
@@ -53,12 +57,21 @@ def extract_paper_data(json_pth, folder_mode):
     else:
         raise ValueError(f"Unknown value passed into 'folder_mode': {folder_mode}")
 
+
+
+# deletes old datafile that was created, the name was not descriptive enough
+if (old := here(f"./data/db/final/kaggle/paper_text/comm_use_subset.tsv", warn=False)): old.unlink(missing_ok=True)
+
+# make the folder that data will be saved into
+pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
+
 data_sources = [
     "biorxiv_medrxiv",
     "comm_use_subset",
     "noncomm_use_subset",
 ]
 
+# start going through folders and parsing json files into dataframes and tsv files
 datpb = tqdm([data_sources[1]])
 for dat_source in datpb: # for each data source
     datpb.set_description(f"{dat_source}")
@@ -89,6 +102,6 @@ for dat_source in datpb: # for each data source
 
         #papers.info()
 
-        pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
+        # writes new data
         papers.to_csv(here(f"./data/db/final/kaggle/paper_text/{dat_source}_{gp.name}.tsv", warn=False),
                     sep="\t", header=True, index=False)
