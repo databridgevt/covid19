@@ -5,6 +5,14 @@ Data analysis of the 2020 COVID-19 pandemic
 
 See [this issue](https://github.com/databridgevt/covid19/issues/3) to get started
 
+## Git Help
+
+Git is hard. Here's a nice cheatsheet for the git commands you need to run as you are working:
+
+https://chendaniely.github.io/training_ds_r/help-faq.html#general-workflow
+
+You will mainly be using the "General workflow" and "Get changes from master on your branch" sections.
+
 ## Datasets
 
 The Call to action and Kaggle datasets:
