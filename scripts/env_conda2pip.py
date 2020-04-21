@@ -9,6 +9,7 @@ deps = env["dependencies"]
 pip = deps.pop(-1)["pip"]
 
 deps.remove('make=4.3')
+deps.remove('python=3.8.2')
 
 deps_eql = map(lambda x: x.replace("=", "=="), deps)
 
