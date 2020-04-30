@@ -1,0 +1,1607 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20201.20.0326.1623                               -->
+<workbook original-version='18.1' source-build='2020.1.2 (20201.20.0326.1623)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='btc (2)' inline='true' name='federated.19eren50u4n92j1cq6xd31e12y4p' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='btc (2)' name='textscan.1ka2qcf1hlpgma19c9qpi05dor8o'>
+            <connection class='textscan' directory='C:/Users/Loveish Sarolia/Downloads' filename='btc (2).csv' password='' port='0' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.1ka2qcf1hlpgma19c9qpi05dor8o' name='btc (2).csv' table='[btc (2)#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='date' name='date' ordinal='0' />
+            <column datatype='integer' name='AdrActCnt' ordinal='1' />
+            <column datatype='integer' name='BlkCnt' ordinal='2' />
+            <column datatype='integer' name='BlkSizeByte' ordinal='3' />
+            <column datatype='real' name='BlkSizeMeanByte' ordinal='4' />
+            <column datatype='real' name='CapMVRVCur' ordinal='5' />
+            <column datatype='real' name='CapMrktCurUSD' ordinal='6' />
+            <column datatype='real' name='CapRealUSD' ordinal='7' />
+            <column datatype='real' name='DiffMean' ordinal='8' />
+            <column datatype='real' name='FeeMeanNtv' ordinal='9' />
+            <column datatype='real' name='FeeMeanUSD' ordinal='10' />
+            <column datatype='real' name='FeeMedNtv' ordinal='11' />
+            <column datatype='real' name='FeeMedUSD' ordinal='12' />
+            <column datatype='real' name='FeeTotNtv' ordinal='13' />
+            <column datatype='real' name='FeeTotUSD' ordinal='14' />
+            <column datatype='real' name='HashRate' ordinal='15' />
+            <column datatype='integer' name='IssContNtv' ordinal='16' />
+            <column datatype='real' name='IssContPctAnn' ordinal='17' />
+            <column datatype='real' name='IssContUSD' ordinal='18' />
+            <column datatype='integer' name='IssTotNtv' ordinal='19' />
+            <column datatype='real' name='IssTotUSD' ordinal='20' />
+            <column datatype='real' name='NVTAdj' ordinal='21' />
+            <column datatype='real' name='NVTAdj90' ordinal='22' />
+            <column datatype='integer' name='PriceBTC' ordinal='23' />
+            <column datatype='real' name='PriceUSD' ordinal='24' />
+            <column datatype='real' name='ROI1yr' ordinal='25' />
+            <column datatype='real' name='ROI30d' ordinal='26' />
+            <column datatype='real' name='SplyCur' ordinal='27' />
+            <column datatype='integer' name='TxCnt' ordinal='28' />
+            <column datatype='integer' name='TxTfrCnt' ordinal='29' />
+            <column datatype='real' name='TxTfrValAdjNtv' ordinal='30' />
+            <column datatype='real' name='TxTfrValAdjUSD' ordinal='31' />
+            <column datatype='real' name='TxTfrValMeanNtv' ordinal='32' />
+            <column datatype='real' name='TxTfrValMeanUSD' ordinal='33' />
+            <column datatype='real' name='TxTfrValMedNtv' ordinal='34' />
+            <column datatype='real' name='TxTfrValMedUSD' ordinal='35' />
+            <column datatype='real' name='TxTfrValNtv' ordinal='36' />
+            <column datatype='real' name='TxTfrValUSD' ordinal='37' />
+            <column datatype='real' name='VtyDayRet180d' ordinal='38' />
+            <column datatype='real' name='VtyDayRet30d' ordinal='39' />
+            <column datatype='real' name='VtyDayRet60d' ordinal='40' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AdrActCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[AdrActCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>AdrActCnt</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BlkCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkCnt</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkSizeByte</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BlkSizeByte]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkSizeByte</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkSizeMeanByte</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[BlkSizeMeanByte]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkSizeMeanByte</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapMVRVCur</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapMVRVCur]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapMVRVCur</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapMrktCurUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapMrktCurUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapMrktCurUSD</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapRealUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapRealUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapRealUSD</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DiffMean</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[DiffMean]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>DiffMean</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMeanNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMeanNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMeanNtv</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMeanUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMeanUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMeanUSD</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMedNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMedNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMedNtv</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMedUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMedUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMedUSD</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeTotNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeTotNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeTotNtv</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeTotUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeTotUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeTotUSD</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HashRate</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[HashRate]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>HashRate</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContNtv</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssContNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContNtv</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContPctAnn</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssContPctAnn]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContPctAnn</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssContUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContUSD</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssTotNtv</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssTotNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssTotNtv</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssTotUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssTotUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssTotUSD</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>NVTAdj</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[NVTAdj]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>NVTAdj</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>NVTAdj90</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[NVTAdj90]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>NVTAdj90</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PriceBTC</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PriceBTC]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>PriceBTC</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PriceUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[PriceUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>PriceUSD</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROI1yr</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ROI1yr]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>ROI1yr</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROI30d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ROI30d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>ROI30d</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SplyCur</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[SplyCur]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>SplyCur</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[TxCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxCnt</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[TxTfrCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrCnt</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValAdjNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValAdjNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValAdjNtv</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValAdjUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValAdjUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValAdjUSD</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMeanNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMeanNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMeanNtv</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMeanUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMeanUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMeanUSD</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMedNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMedNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMedNtv</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMedUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMedUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMedUSD</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValNtv</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValUSD</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet180d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet180d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet180d</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet30d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet30d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet30d</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet60d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet60d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet60d</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Adr Act Cnt' datatype='integer' name='[AdrActCnt]' role='measure' type='quantitative' />
+      <column caption='Blk Cnt' datatype='integer' name='[BlkCnt]' role='measure' type='quantitative' />
+      <column caption='Blk Size Byte' datatype='integer' name='[BlkSizeByte]' role='measure' type='quantitative' />
+      <column caption='Blk Size Mean Byte' datatype='real' name='[BlkSizeMeanByte]' role='measure' type='quantitative' />
+      <column caption='Cap MVRV Cur' datatype='real' name='[CapMVRVCur]' role='measure' type='quantitative' />
+      <column caption='Cap Mrkt Cur USD' datatype='real' name='[CapMrktCurUSD]' role='measure' type='quantitative' />
+      <column caption='Cap Real USD' datatype='real' name='[CapRealUSD]' role='measure' type='quantitative' />
+      <column caption='Diff Mean' datatype='real' name='[DiffMean]' role='measure' type='quantitative' />
+      <column caption='Fee Mean Ntv' datatype='real' name='[FeeMeanNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Mean USD' datatype='real' name='[FeeMeanUSD]' role='measure' type='quantitative' />
+      <column caption='Fee Med Ntv' datatype='real' name='[FeeMedNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Med USD' datatype='real' name='[FeeMedUSD]' role='measure' type='quantitative' />
+      <column caption='Fee Tot Ntv' datatype='real' name='[FeeTotNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Tot USD' datatype='real' name='[FeeTotUSD]' role='measure' type='quantitative' />
+      <column caption='Hash Rate' datatype='real' name='[HashRate]' role='measure' type='quantitative' />
+      <column caption='Iss Cont Ntv' datatype='integer' name='[IssContNtv]' role='measure' type='quantitative' />
+      <column caption='Iss Cont Pct Ann' datatype='real' name='[IssContPctAnn]' role='measure' type='quantitative' />
+      <column caption='Iss Cont USD' datatype='real' name='[IssContUSD]' role='measure' type='quantitative' />
+      <column caption='Iss Tot Ntv' datatype='integer' name='[IssTotNtv]' role='measure' type='quantitative' />
+      <column caption='Iss Tot USD' datatype='real' name='[IssTotUSD]' role='measure' type='quantitative' />
+      <column caption='NVT Adj' datatype='real' name='[NVTAdj]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Price BTC' datatype='integer' name='[PriceBTC]' role='measure' type='quantitative' />
+      <column caption='Price USD' datatype='real' name='[PriceUSD]' role='measure' type='quantitative' />
+      <column datatype='real' name='[ROI1yr]' role='dimension' type='quantitative' />
+      <column caption='Sply Cur' datatype='real' name='[SplyCur]' role='measure' type='quantitative' />
+      <column caption='Tx Cnt' datatype='integer' name='[TxCnt]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Cnt' datatype='integer' name='[TxTfrCnt]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Adj Ntv' datatype='real' name='[TxTfrValAdjNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Adj USD' datatype='real' name='[TxTfrValAdjUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Mean Ntv' datatype='real' name='[TxTfrValMeanNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Mean USD' datatype='real' name='[TxTfrValMeanUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Med Ntv' datatype='real' name='[TxTfrValMedNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Med USD' datatype='real' name='[TxTfrValMedUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Ntv' datatype='real' name='[TxTfrValNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val USD' datatype='real' name='[TxTfrValUSD]' role='measure' type='quantitative' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <column-instance column='[PriceUSD]' derivation='Avg' name='[avg:PriceUSD:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[PriceUSD]' derivation='CountD' name='[ctd:PriceUSD:qk]' pivot='key' type='quantitative' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.0815006' measure-ordering='alphabetic' measure-percentage='0.918499' rowDisplayCount='10000' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.19eren50u4n92j1cq6xd31e12y4p].[ctd:PriceUSD:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.19eren50u4n92j1cq6xd31e12y4p]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='wti-crude-oil-prices-10-year-daily-chart' inline='true' name='federated.0u2xx2f1xtglzy0zlx8fd0ltvzem' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='wti-crude-oil-prices-10-year-daily-chart' name='textscan.1y4pejx1b01n620ztprhs0jqfzct'>
+            <connection class='textscan' cleaning='yes' compat='no' csvFile='C:/Users/Loveish Sarolia/Downloads/wti-crude-oil-prices-10-year-daily-chart.csv' dataRefreshTime='' directory='C:/Users/Loveish Sarolia/Downloads' filename='C:/Users/LOVEIS~1/AppData/Local/Temp/TableauTemp/1li3zvz1abjh7412ywble0xvd54c/wti-crude-oil-prices-10-year-daily-chart.csv.xlsx' interpretationMode='8' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation join='inner' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[wti-crude-oil-prices-10-year-daily-chart.csv].[F1]' />
+              <expression op='[btc (2).csv].[date]' />
+            </expression>
+          </clause>
+          <relation connection='textscan.1y4pejx1b01n620ztprhs0jqfzct' name='wti-crude-oil-prices-10-year-daily-chart.csv' table='[C:\Users\Loveish Sarolia\Downloads\wti-crude-oil-prices-10-year-daily-chart#csv]' type='table'>
+            <columns character-set='UTF-8' gridOrigin='A17:B2557:no:A17:B2557:0' header='no' locale='en_US' separator=','>
+              <column datatype='date' name='F1' ordinal='0' />
+              <column datatype='real' name='F2' ordinal='1' />
+            </columns>
+          </relation>
+          <relation connection='textscan.1y4pejx1b01n620ztprhs0jqfzct' name='btc (2).csv' table='[C:\Users\Loveish Sarolia\Downloads\btc (2)#csv]' type='table'>
+            <columns character-set='UTF-8' gridOrigin='A1:AO4126:no:A1:AO4126:1' header='yes' locale='en_US' separator=','>
+              <column datatype='date' name='date' ordinal='0' />
+              <column datatype='integer' name='AdrActCnt' ordinal='1' />
+              <column datatype='integer' name='BlkCnt' ordinal='2' />
+              <column datatype='integer' name='BlkSizeByte' ordinal='3' />
+              <column datatype='real' name='BlkSizeMeanByte' ordinal='4' />
+              <column datatype='real' name='CapMVRVCur' ordinal='5' />
+              <column datatype='real' name='CapMrktCurUSD' ordinal='6' />
+              <column datatype='real' name='CapRealUSD' ordinal='7' />
+              <column datatype='real' name='DiffMean' ordinal='8' />
+              <column datatype='real' name='FeeMeanNtv' ordinal='9' />
+              <column datatype='real' name='FeeMeanUSD' ordinal='10' />
+              <column datatype='real' name='FeeMedNtv' ordinal='11' />
+              <column datatype='real' name='FeeMedUSD' ordinal='12' />
+              <column datatype='real' name='FeeTotNtv' ordinal='13' />
+              <column datatype='real' name='FeeTotUSD' ordinal='14' />
+              <column datatype='real' name='HashRate' ordinal='15' />
+              <column datatype='integer' name='IssContNtv' ordinal='16' />
+              <column datatype='real' name='IssContPctAnn' ordinal='17' />
+              <column datatype='real' name='IssContUSD' ordinal='18' />
+              <column datatype='integer' name='IssTotNtv' ordinal='19' />
+              <column datatype='real' name='IssTotUSD' ordinal='20' />
+              <column datatype='real' name='NVTAdj' ordinal='21' />
+              <column datatype='real' name='NVTAdj90' ordinal='22' />
+              <column datatype='integer' name='PriceBTC' ordinal='23' />
+              <column datatype='real' name='PriceUSD' ordinal='24' />
+              <column datatype='real' name='ROI1yr' ordinal='25' />
+              <column datatype='real' name='ROI30d' ordinal='26' />
+              <column datatype='real' name='SplyCur' ordinal='27' />
+              <column datatype='integer' name='TxCnt' ordinal='28' />
+              <column datatype='integer' name='TxTfrCnt' ordinal='29' />
+              <column datatype='real' name='TxTfrValAdjNtv' ordinal='30' />
+              <column datatype='real' name='TxTfrValAdjUSD' ordinal='31' />
+              <column datatype='real' name='TxTfrValMeanNtv' ordinal='32' />
+              <column datatype='real' name='TxTfrValMeanUSD' ordinal='33' />
+              <column datatype='real' name='TxTfrValMedNtv' ordinal='34' />
+              <column datatype='real' name='TxTfrValMedUSD' ordinal='35' />
+              <column datatype='real' name='TxTfrValNtv' ordinal='36' />
+              <column datatype='real' name='TxTfrValUSD' ordinal='37' />
+              <column datatype='real' name='VtyDayRet180d' ordinal='38' />
+              <column datatype='real' name='VtyDayRet30d' ordinal='39' />
+              <column datatype='real' name='VtyDayRet60d' ordinal='40' />
+            </columns>
+          </relation>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[wti-crude-oil-prices-10-year-daily-chart.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A17:B2557:no:A17:B2557:0&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;false&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='quote-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[wti-crude-oil-prices-10-year-daily-chart.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F2</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[F2]</local-name>
+            <parent-name>[wti-crude-oil-prices-10-year-daily-chart.csv]</parent-name>
+            <remote-alias>F2</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:AO4126:no:A1:AO4126:1&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>date</remote-name>
+            <remote-type>133</remote-type>
+            <local-name>[date]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>date</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AdrActCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[AdrActCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>AdrActCnt</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BlkCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkCnt</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkSizeByte</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BlkSizeByte]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkSizeByte</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BlkSizeMeanByte</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[BlkSizeMeanByte]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>BlkSizeMeanByte</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapMVRVCur</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapMVRVCur]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapMVRVCur</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapMrktCurUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapMrktCurUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapMrktCurUSD</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CapRealUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[CapRealUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>CapRealUSD</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DiffMean</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[DiffMean]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>DiffMean</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMeanNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMeanNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMeanNtv</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMeanUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMeanUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMeanUSD</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMedNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMedNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMedNtv</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeMedUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeMedUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeMedUSD</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeTotNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeTotNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeTotNtv</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FeeTotUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[FeeTotUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>FeeTotUSD</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HashRate</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[HashRate]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>HashRate</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContNtv</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssContNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContNtv</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContPctAnn</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssContPctAnn]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContPctAnn</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssContUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssContUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssContUSD</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssTotNtv</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[IssTotNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssTotNtv</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>IssTotUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[IssTotUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>IssTotUSD</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>NVTAdj</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[NVTAdj]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>NVTAdj</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>NVTAdj90</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[NVTAdj90]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>NVTAdj90</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PriceBTC</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[PriceBTC]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>PriceBTC</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>PriceUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[PriceUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>PriceUSD</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROI1yr</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ROI1yr]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>ROI1yr</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROI30d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ROI30d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>ROI30d</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SplyCur</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[SplyCur]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>SplyCur</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[TxCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxCnt</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrCnt</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[TxTfrCnt]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrCnt</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValAdjNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValAdjNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValAdjNtv</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValAdjUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValAdjUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValAdjUSD</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMeanNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMeanNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMeanNtv</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMeanUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMeanUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMeanUSD</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMedNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMedNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMedNtv</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValMedUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValMedUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValMedUSD</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValNtv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValNtv]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValNtv</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>TxTfrValUSD</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[TxTfrValUSD]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>TxTfrValUSD</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet180d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet180d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet180d</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet30d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet30d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet30d</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VtyDayRet60d</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[VtyDayRet60d]</local-name>
+            <parent-name>[btc (2).csv]</parent-name>
+            <remote-alias>VtyDayRet60d</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Adr Act Cnt' datatype='integer' name='[AdrActCnt]' role='measure' type='quantitative' />
+      <column caption='Blk Cnt' datatype='integer' name='[BlkCnt]' role='measure' type='quantitative' />
+      <column caption='Blk Size Byte' datatype='integer' name='[BlkSizeByte]' role='measure' type='quantitative' />
+      <column caption='Blk Size Mean Byte' datatype='real' name='[BlkSizeMeanByte]' role='measure' type='quantitative' />
+      <column caption='Cap MVRV Cur' datatype='real' name='[CapMVRVCur]' role='measure' type='quantitative' />
+      <column caption='Cap Mrkt Cur USD' datatype='real' name='[CapMrktCurUSD]' role='measure' type='quantitative' />
+      <column caption='Cap Real USD' datatype='real' name='[CapRealUSD]' role='measure' type='quantitative' />
+      <column caption='Diff Mean' datatype='real' name='[DiffMean]' role='measure' type='quantitative' />
+      <column caption='Fee Mean Ntv' datatype='real' name='[FeeMeanNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Mean USD' datatype='real' name='[FeeMeanUSD]' role='measure' type='quantitative' />
+      <column caption='Fee Med Ntv' datatype='real' name='[FeeMedNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Med USD' datatype='real' name='[FeeMedUSD]' role='measure' type='quantitative' />
+      <column caption='Fee Tot Ntv' datatype='real' name='[FeeTotNtv]' role='measure' type='quantitative' />
+      <column caption='Fee Tot USD' datatype='real' name='[FeeTotUSD]' role='measure' type='quantitative' />
+      <column caption='Hash Rate' datatype='real' name='[HashRate]' role='measure' type='quantitative' />
+      <column caption='Iss Cont Ntv' datatype='integer' name='[IssContNtv]' role='measure' type='quantitative' />
+      <column caption='Iss Cont Pct Ann' datatype='real' name='[IssContPctAnn]' role='measure' type='quantitative' />
+      <column caption='Iss Cont USD' datatype='real' name='[IssContUSD]' role='measure' type='quantitative' />
+      <column caption='Iss Tot Ntv' datatype='integer' name='[IssTotNtv]' role='measure' type='quantitative' />
+      <column caption='Iss Tot USD' datatype='real' name='[IssTotUSD]' role='measure' type='quantitative' />
+      <column caption='NVT Adj' datatype='real' name='[NVTAdj]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Price BTC' datatype='integer' name='[PriceBTC]' role='measure' type='quantitative' />
+      <column caption='Price USD' datatype='real' name='[PriceUSD]' role='measure' type='quantitative' />
+      <column datatype='real' name='[ROI1yr]' role='dimension' type='quantitative' />
+      <column caption='Sply Cur' datatype='real' name='[SplyCur]' role='measure' type='quantitative' />
+      <column caption='Tx Cnt' datatype='integer' name='[TxCnt]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Cnt' datatype='integer' name='[TxTfrCnt]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Adj Ntv' datatype='real' name='[TxTfrValAdjNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Adj USD' datatype='real' name='[TxTfrValAdjUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Mean Ntv' datatype='real' name='[TxTfrValMeanNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Mean USD' datatype='real' name='[TxTfrValMeanUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Med Ntv' datatype='real' name='[TxTfrValMedNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Med USD' datatype='real' name='[TxTfrValMedUSD]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val Ntv' datatype='real' name='[TxTfrValNtv]' role='measure' type='quantitative' />
+      <column caption='Tx Tfr Val USD' datatype='real' name='[TxTfrValUSD]' role='measure' type='quantitative' />
+      <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.163001' measure-ordering='alphabetic' measure-percentage='0.836999' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 2'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>BTC Price, Volatility Over Time (with corresponding Crude Oil Prices)&#10;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='btc (2)' name='federated.19eren50u4n92j1cq6xd31e12y4p' />
+            <datasource caption='wti-crude-oil-prices-10-year-daily-chart' name='federated.0u2xx2f1xtglzy0zlx8fd0ltvzem' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0u2xx2f1xtglzy0zlx8fd0ltvzem'>
+            <column datatype='real' name='[F2]' role='measure' type='quantitative' />
+            <column-instance column='[F2]' derivation='Avg' name='[avg:F2:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[F2]' derivation='Sum' name='[sum:F2:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='federated.19eren50u4n92j1cq6xd31e12y4p'>
+            <column caption='Price USD' datatype='real' name='[PriceUSD]' role='measure' type='quantitative' />
+            <column datatype='real' name='[VtyDayRet30d]' role='measure' type='quantitative' />
+            <column-instance column='[PriceUSD]' derivation='Avg' name='[avg:PriceUSD:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[VtyDayRet30d]' derivation='Avg' name='[avg:VtyDayRet30d:qk]' pivot='key' type='quantitative' />
+            <column caption='Date' datatype='date' name='[date]' role='dimension' type='ordinal' />
+            <column-instance column='[VtyDayRet30d]' derivation='Sum' name='[sum:VtyDayRet30d:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[date]' derivation='Day-Trunc' name='[tdy:date:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[sum:F2:qk]' included-values='non-null' />
+          <filter class='quantitative' column='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]' included-values='non-null' />
+          <filter class='quantitative' column='[federated.19eren50u4n92j1cq6xd31e12y4p].[sum:VtyDayRet30d:qk]' included-values='non-null' />
+          <slices>
+            <column>[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]</column>
+            <column>[federated.19eren50u4n92j1cq6xd31e12y4p].[sum:VtyDayRet30d:qk]</column>
+            <column>[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[sum:F2:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]' field-type='quantitative' min='-1346.8475632566224' range-type='fixedminuniformmax' scope='rows' type='space' />
+            <encoding attr='space' class='0' field='[federated.19eren50u4n92j1cq6xd31e12y4p].[tdy:date:qk]' field-type='quantitative' min='#2010-01-20 15:48:14.108#' range-type='fixedmin' scope='cols' type='space' />
+            <format attr='title' class='0' field='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]' scope='rows' value='Price (USD)' />
+            <format attr='title' class='0' field='[federated.19eren50u4n92j1cq6xd31e12y4p].[tdy:date:qk]' scope='cols' value='Time (Days)' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[sum:F2:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#9e2515</color>
+                <color>#a73c2e</color>
+                <color>#b1564a</color>
+                <color>#bb736a</color>
+                <color>#c5928c</color>
+                <color>#cfb4b1</color>
+                <color>#d9d9d9</color>
+                <color>#a2c3a2</color>
+                <color>#73ad73</color>
+                <color>#4b974b</color>
+                <color>#2a812a</color>
+                <color>#116b11</color>
+                <color>#005500</color>
+              </color-palette>
+            </encoding>
+            <encoding attr='color' field='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[avg:F2:qk]' palette='red_green_diverging_10_0' symmetric='false' type='interpolated' />
+          </style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[avg:F2:qk]' value='Average Crude Oil Prices&#10;'>
+              <formatted-text>
+                <run>Average Crude Oil Prices&#10;</run>
+              </formatted-text>
+            </format>
+            <format attr='size' field='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:VtyDayRet30d:qk]' value='Average 30 Day Volatility&#10;'>
+              <formatted-text>
+                <run>Average 30 Day Volatility&#10;</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[avg:F2:qk]' />
+              <size column='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:VtyDayRet30d:qk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-markers-mode' value='auto' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:PriceUSD:qk]</rows>
+        <cols>[federated.19eren50u4n92j1cq6xd31e12y4p].[tdy:date:qk]</cols>
+      </table>
+      <simple-id uuid='{D63C192A-548F-4128-9B20-B0C88DB6AFE9}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='51'>
+    <window class='worksheet' maximized='true' name='Sheet 2'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='177'>
+            <card pane-specification-id='3' param='[federated.0u2xx2f1xtglzy0zlx8fd0ltvzem].[avg:F2:qk]' type='color' />
+            <card pane-specification-id='3' param='[federated.19eren50u4n92j1cq6xd31e12y4p].[avg:VtyDayRet30d:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{F9CC9664-8CA5-4324-BA26-EB19B16D7156}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='384' name='Sheet 2' width='384'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
