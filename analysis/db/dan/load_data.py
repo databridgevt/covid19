@@ -64,17 +64,15 @@ if (old := here(f"./data/db/final/kaggle/paper_text/comm_use_subset.tsv", warn=F
 pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
 
 data_sources = [
-    "biorxiv_medrxiv",
-    "comm_use_subset",
-    "noncomm_use_subset",
+    "document_parses",
 ]
-
+#breakpoint()
 # start going through folders and parsing json files into dataframes and tsv files
-datpb = tqdm([data_sources[1]])
-for dat_source in datpb:  # for each data source
+datpb = tqdm([data_sources])
+for dat_source in data_sources:  # for each data source
     datpb.set_description(f"{dat_source}")
 
-    ds_hr = here(f"./data/db/original/kaggle/{dat_source}/{dat_source}/", warn=False)
+    ds_hr = here(f"./data/db/original/kaggle/{dat_source}/", warn=False)
     fdrs = list(ds_hr.iterdir())
 
     # print(f"\n\n{dat_source}")
