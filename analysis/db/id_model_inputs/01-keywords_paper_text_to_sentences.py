@@ -5,6 +5,7 @@ import nltk.data
 from nltk.tokenize import RegexpTokenizer
 import pandas as pd
 from tqdm import tqdm
+tqdm.pandas()
 
 from pyprojroot import here
 
@@ -36,7 +37,7 @@ for term in tqdm(search_terms):
     has_terms_df = has_search_terms(has_terms_df, term, 'text')
 
 # tablulate term results
-display(has_terms_df
+print(has_terms_df
      .filter(like="has-", axis='columns')
      .apply(lambda x: x.value_counts(dropna=False))
      .assign(count=lambda x: x.apply('sum', axis='columns'))
@@ -47,7 +48,7 @@ display(has_terms_df
 #nltk.download('punkt')
 sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
 
-has_terms_df["text_sent"] = has_terms_df["text"].apply(lambda x: sent_detector.tokenize(x.strip()))
+has_terms_df["text_sent"] = has_terms_df["text"].progress_apply(lambda x: sent_detector.tokenize(x.strip()))
 
 
 # save out working data
