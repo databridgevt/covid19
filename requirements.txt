@@ -1,4 +1,5 @@
 beautifulsoup4==4.9.1
+black==19.10b0
 jupyterlab==2.1.2
 kaggle==1.5.6
 matplotlib==3.2.1
@@ -10,6 +11,7 @@ pyprojroot==0.2.0
 pyyaml==5.3.1
 seaborn==0.10.1
 ibm-watson==4.3.0
+scikit-learn==0.23.1
 soupsieve==2.0
 spacy==2.2.4
 textblob==0.15.3
