@@ -4,9 +4,12 @@ channels:
   - defaults
 dependencies:
   - beautifulsoup4=4.9.1
+  - geopandas=0.7.0
+  - ipywidgets=7.5.1
   - jupyterlab=2.1.2
   - kaggle=1.5.6
   - matplotlib=3.2.1
+  - make=4.3
   - nltk=3.4.4
   - notebook=6.0.3
   - pandas=1.0.3
@@ -14,8 +17,9 @@ dependencies:
   - python=3.8.2
   - pyprojroot=0.2.0
   - pyyaml=5.3.1
-  - make=4.3
   - seaborn=0.10.1
+  - shapely=1.7.0
   - pip:
     - ibm-watson==4.3.0
+    - plotly==4.8.1
     - soupsieve==2.0
