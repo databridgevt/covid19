@@ -1,4 +1,5 @@
 import plotly.figure_factory as ff
+from pyprojroot import here
 
 import numpy as np
 import pandas as pd
@@ -7,7 +8,7 @@ import pandas as pd
 
 df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/csse_covid_19_time_series/'
                  'time_series_covid19_confirmed_US.csv')
-loc_df = pd.read_excel('State_FIPS.xlsx')
+loc_df = pd.read_excel(here('./data/db/original/maps/State_FIPS.xlsx'))
 merged_df = pd.merge(loc_df, df, right_on='Admin2', left_on='Name')
 # print(list(merged_df.columns))
 merged_df['fips_str'] = merged_df['FIPS_x'].apply(lambda x: f'{x:05.0f}')  # left pad with 0 for 5 digits
