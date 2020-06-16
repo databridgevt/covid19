@@ -22,4 +22,6 @@ dependencies:
   - pip:
     - ibm-watson==4.3.0
     - plotly==4.8.1
+    - plotly-geo==1.0.0
+    - pyshp==1.2.10
     - soupsieve==2.0
