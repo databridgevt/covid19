@@ -23,11 +23,11 @@ values = merged_df['4/22/20'].tolist()
 fig = ff.create_choropleth(
     fips=fips, values=values,
     scope=['usa',
-           # 'Alaska',
-           # 'Puerto Rico',
-           # 'American Samoa',
-           # 'Commonwealth of the Northern Mariana Islands', 'Guam',
-           # 'United States Virgin Islands'
+         # 'Alaska',
+         # 'Puerto Rico',
+         # 'American Samoa',
+         # 'Commonwealth of the Northern Mariana Islands', 'Guam',
+         # 'United States Virgin Islands'
            ],
     binning_endpoints=endpts,
     colorscale=colorscale,
