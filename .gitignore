@@ -1,6 +1,6 @@
 .idea/
 .DS_Store
-
+output/
 environ.yaml
 
 # ignore data folder by default
