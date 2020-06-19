@@ -32,4 +32,4 @@ data_kaggle:
 ## data_kgl_text   : parses the kaggle json files
 .PHONY: data_kgl_text
 data_kgl_text:
-	python ./analysis/db/dan/load_data.py
+	python ./analysis/db/kaggle/01-combine_documents.py
