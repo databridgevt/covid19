@@ -19,6 +19,7 @@ dependencies:
   - pyyaml=5.3.1
   - seaborn=0.10.1
   - shapely=1.7.0
+  - xlrd=1.2.0
   - pip:
     - ibm-watson==4.3.0
     - plotly==4.8.1
