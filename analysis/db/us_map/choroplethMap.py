@@ -56,8 +56,8 @@ fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 # save out working data
 pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
 pio.write_html(fig,
-               file=here("./output/maps/choropleth_us_cases.html", warn=False),
-               auto_open=True)
+               file=str(here("./output/maps/choropleth_us_cases.html", warn=False)),
+               auto_open=False)
 
 
 # ChoroplethMap using FIPS from merged data
