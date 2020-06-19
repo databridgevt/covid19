@@ -6,6 +6,8 @@ import plotly.express as px
 import pandas as pd
 from urllib.request import urlopen
 import json
+import pathlib as pl
+
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
@@ -49,7 +51,13 @@ fig = px.choropleth(molten_df,
                     )
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 # fig.show()
-pio.write_html(fig, file='index.html', auto_open=True)
+
+# save out figure
+# save out working data
+pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
+pio.write_html(fig,
+               file=here("./output/maps/choropleth_us_cases.html", warn=False),
+               auto_open=True)
 
 
 # ChoroplethMap using FIPS from merged data
