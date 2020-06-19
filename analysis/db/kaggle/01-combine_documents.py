@@ -61,7 +61,7 @@ if (old := here(f"./data/db/final/kaggle/paper_text/comm_use_subset.tsv", warn=F
     old.unlink(missing_ok=True)
 
 # make the folder that data will be saved into
-pl.Path(here("./data/db/final/kaggle/paper_text/")).mkdir(parents=True, exist_ok=True)
+pl.Path(here("./data/db/final/kaggle/paper_text/", warn=False)).mkdir(parents=True, exist_ok=True)
 
 data_sources = [
     "document_parses",
