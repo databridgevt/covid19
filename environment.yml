@@ -14,6 +14,7 @@ dependencies:
   - notebook=6.0.3
   - pandas=1.0.3
   - pip=20.1
+  - pylint=2.5.3
   - python=3.8.2
   - pyprojroot=0.2.0
   - pyyaml=5.3.1
