@@ -1,5 +1,6 @@
 import plotly.figure_factory as ff
 import numpy as np
+import plotly.io as pio
 from pyprojroot import here
 import plotly.express as px
 import pandas as pd
@@ -8,6 +9,11 @@ import json
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
+# TODO: Change range_color numbers in fig = px.choropleth()
+# TODO: Build the map for a specific date
+# TODO: Build line/bar graphs to check case numbers per state over a period of time
+# TODO: Draw another version of this map, but accounts for population density per county (per capita count)
+# TODO: See if rate is changing, counts over time (a 14 day sliding window count)
 # Choropleth map with time slider and hover text
 
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
@@ -26,7 +32,9 @@ molten_df = merged_df.melt(
 molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # change date to ISO8601 standard format
 
 fips = molten_df['fips_str'].tolist()
-values = molten_df['date_iso'].tolist()
+# max_val = molten_df['value'].max()
+
+
 fig = px.choropleth(molten_df,
                     geojson=counties,
                     locations=fips,
@@ -34,14 +42,14 @@ fig = px.choropleth(molten_df,
                     animation_frame='date',
                     hover_data=['State', 'value'],
                     color_continuous_scale="Viridis",
-                    range_color=(0, 12),
+                    range_color=(0, 300),
                     scope="usa",
                     title='Confirmed cases',
                     labels={'value': 'confirmed cases'}
                     )
 fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-fig.show()
-
+# fig.show()
+pio.write_html(fig, file='index.html', auto_open=True)
 
 
 # ChoroplethMap using FIPS from merged data
