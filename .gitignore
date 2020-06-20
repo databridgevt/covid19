@@ -1,10 +1,14 @@
 .idea/
 .DS_Store
-
+output/
 environ.yaml
 
 # ignore data folder by default
 data/
+# data files
+*.csv
+*.tsv
+*.xls[x]
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
