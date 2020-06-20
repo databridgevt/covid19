@@ -16,6 +16,15 @@ def has_search_terms(dat, term, text_col):
     dat[f"has-{new_term_string}"] = term_sentences
     return(dat)
 
+def convert_terms_to_regex(term):
+    words = term.split(" ")
+    regex_pattern = "^"
+    for term in words:
+        regex_pattern += f"(?=.*{term}\b)"
+    regex_pattern += ".*$"
+    return regex_pattern
+
+assert convert_terms_to_regex("incubation period") == "^(?=.*incubation\b)(?=.*period\b).*$"
 
 paper_df = pd.read_csv(here() / "data" / "db" / "final" / "kaggle" / "paper_text" / "document_parses_pmc_json.tsv", sep = "\t")
 
@@ -30,6 +39,8 @@ search_terms = [
     "asymptomatic fraction",
     "hospitalized fraction"
 ]
+
+search_terms_regex = [convert_terms_to_regex(x) for x in search_terms]
 
 has_terms_df = paper_df
 
