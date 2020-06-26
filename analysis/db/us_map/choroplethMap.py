@@ -11,16 +11,17 @@ import json
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
-# TODO: Change range_color numbers in fig = px.choropleth()
-# TODO: Build the map for a specific date
 # TODO: Build line/bar graphs to check case numbers per state over a period of time
-# TODO: Draw another version of this map, but accounts for population density per county (per capita count)
 # TODO: See if rate is changing, counts over time (a 14 day sliding window count)
-# Choropleth map with time slider and hover text
+# TODO: Try to merge PopulationEstimates.xls to confirmed_df and remove State_FIPS.xlsx
 
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
 loc_df = pd.read_excel(here('./data/db/original/maps/State_FIPS.xlsx'))
+pop_df = pd.read_excel(here('./data/db/original/maps/PopulationEstimates.xls'))  # population dataset for 2019
+
+pop_df['fips_str'] = pop_df['FIPStxt'].apply(lambda x: f'{x:05.0f}')
+pop_df = pop_df[['fips_str', 'Area_Name', 'POP_ESTIMATE_2019']]
 
 merged_df = pd.merge(loc_df, confirmed_df, right_on='Admin2', left_on='Name')
 
@@ -32,22 +33,44 @@ molten_df = merged_df.melt(
 )
 
 molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # change date to ISO8601 standard format
+# fips = molten_df['fips_str'].tolist()
 
-fips = molten_df['fips_str'].tolist()
+molten_pop_df = pd.merge(molten_df, pop_df, on='fips_str')  # add population per county
+grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'Admin2', 'POP_ESTIMATE_2019'])['value'].sum().reset_index()
+grouped_by['value'] = grouped_by['value']/grouped_by['POP_ESTIMATE_2019']   # get per capita value
 
-# plt.show()
-# color_map = plt.cm.get_cmap('viridis')
-# reversed_viridis = color_map.reversed()
+plot_data = grouped_by[grouped_by.date_iso == '2020-04-01']
 
-
-fig = px.choropleth(molten_df,
+# confirmed cases per capita
+fig = px.choropleth(plot_data,
                     geojson=counties,
-                    locations=fips,
+                    locations=plot_data.fips_str,
                     color='value',
-                    animation_frame='date',
+                    # animation_frame='date',
+                    hover_data=['Admin2', 'value', 'POP_ESTIMATE_2019'],
+                    color_continuous_scale='viridis_r',
+                    range_color=(0, plot_data['value'].max()),
+                    scope="usa",
+                    title='Confirmed cases per capita',
+                    labels={'value': 'confirmed cases'}
+                    )
+fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
+pio.write_html(fig,
+               file=str(here("./output/maps/choropleth_us_cases.html", warn=False)),
+               auto_open=False)
+
+'''
+# overall confirmed cases data
+plot_data = molten_df[molten_df.date_iso == '2020-04-01']
+fig = px.choropleth(plot_data,  
+                    geojson=counties,
+                    locations=plot_data.fips_str,
+                    color='value',
+                    # animation_frame='date',
                     hover_data=['State', 'value'],
                     color_continuous_scale='viridis_r',
-                    range_color=(0, 300),
+                    range_color=(0, 500),
                     scope="usa",
                     title='Confirmed cases',
                     labels={'value': 'confirmed cases'}
@@ -59,5 +82,5 @@ fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
 pio.write_html(fig,
                file=str(here("./output/maps/choropleth_us_cases.html", warn=False)),
-               auto_open=True)
-
+               auto_open=False)
+'''
