@@ -26,11 +26,22 @@ molten_df = merged_df.melt(
 molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # change date to ISO8601 standard format
 # state = molten_df.loc[molten_df.Province_State == 'Virginia', molten_df.Province_State == 'New York']
 # molten_df['date_iso'] = molten_df.loc[molten_df.date_iso == '2020-04-01', molten_df.date_iso == '2020-04-05']
-subset = molten_df.loc[molten_df.Province_State == 'Virginia', ['Province_State', 'Admin2', 'value', 'date_iso']]
-
+state1 = 'Washington'
+state2 = 'California'
+subset = molten_df.loc[(molten_df.Province_State.isin([state1, state2])),
+                       ['Province_State', 'Admin2', 'value', 'date_iso']]
+# subset = molten_df[['Province_State', 'Admin2', 'value', 'date_iso']]
+# subset = subset[subset.date_iso == '2020-04-01']   # for violinplot to show on certain date
 grouped_counts = subset.groupby(['date_iso', 'Province_State', 'Admin2'])['value'].sum().reset_index()
 
-ax = sns.lineplot(x="date_iso", y="value", hue='Province_State', data=grouped_counts)  # show cases per state monthly
+# Noninteractive graps
+'''
+# ax = sns.lineplot(x="date_iso", y="value", hue='Province_State', data=grouped_counts)  # show cases per state monthly
 # ax = sns.stripplot(x="date_iso", y="value", hue='Province_State', data=grouped_counts)
+# ax = sns.violinplot(x='date_iso', y='value', hue='Province_State', data=grouped_counts, palette="Set2", split=True,
+#                     scale="count", inner="quartile")
+# ax = sns.countplot(x="date_iso", hue='Province_State', data=grouped_counts)  # works better if there are certain dates
 # plt.tight_layout()
-plt.show()
+# plt.show()
+'''
+
