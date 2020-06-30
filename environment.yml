@@ -26,3 +26,4 @@ dependencies:
     - plotly-geo==1.0.0
     - pyshp==1.2.10
     - soupsieve==2.0
+    - dash==1.13.3
