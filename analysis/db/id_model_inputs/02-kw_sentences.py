@@ -1,13 +1,20 @@
 import pathlib as pl
 
 import pandas as pd
-
 from pyprojroot import here
+import janitor
 
 
-kw_df = pd.read_pickle(here("./data/db/working/kaggle/id_model_inputs/01-sentences-keywords.pickle"))
+kw_df = pd.read_pickle(here("./data/db/working/kaggle/id_model_inputs/01-sentences-keywords-2.pickle"))
 metadata = pd.read_csv(here("./data/db/original/kaggle/metadata.csv"))
 
+found_kw_df = kw_df.loc[kw_df.found_terms.apply(bool)]
+
+assert kw_df.pid.duplicated().any() == False
+
+findings = pd.json_normalize(found_kw_df.found_terms).clean_names()
+findings.columns = 'has-' + findings.columns
+keyword_papers = pd.concat([found_kw_df.reset_index(drop=True), findings], axis='columns')
 
 ## "incubation period" sentences that also contain "day" helps remove sentences from bench lab studies
 kw_df['sent-incubation_period_day'] = kw_df["text_sent"].apply(lambda x: [sent for sent in x if all(t in sent.lower() for t in ["incubation period", "day"])])

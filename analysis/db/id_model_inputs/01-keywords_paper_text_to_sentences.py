@@ -45,10 +45,11 @@ def find_matches_in_list(sentences, terms):
                 matches[trm] = True
                 break # if there is a pattern match go to the next term
     return(matches)
-assert find_matches_in_list(['hello my name is dan', 'hello you', 'the quick brown fox'],
-                     ['hello dan', 'fox', 'tom nook']) == {
+assert find_matches_in_list(['hello my name is dan', 'hello you', 'the quick brown fox', 'my I have a word?'],
+                     ['hello dan', 'fox', 'tom nook', 'word']) == {
                          'hello dan': True,
-                         'fox': True
+                         'fox': True,
+                         'word': True,
                      }
 
 
