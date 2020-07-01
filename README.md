@@ -70,6 +70,8 @@ Introduce yourself [here](https://github.com/databridgevt/covid19/issues/1)
 
 - **[Loveish Sarolia](https://github.com/loveishsarolia)**: Freshman student at Virginia Tech majoring in [Computational Modeling and Data Analytics](https://vt.edu/academics/majors/computational-modeling-and-data-analytics.html) as well as [Economics](https://econ.vt.edu/). Interested in economic analysis and blockchain development.
 
+- **Asha Cheruvu**: Senior undergraduate student at Virginia majoring in Computational Modeling and Data Analytics (CMDA) and Computer Science (CS). Experience with building software and performing data analysis, and interested in applying these skills to researching COVID-19.
+
 #### Spring 2020
 
 - Project Lead: **[Daniel Chen](https://daniel.rbind.io/)**: PhD student at Virginia Tech in [GBCB](https://gbcb.graduateschool.vt.edu/) studying data science and data literacy education in medical, biomedical, and health sciences.
