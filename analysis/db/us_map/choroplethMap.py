@@ -17,7 +17,9 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
+# Resource for State_FIPS: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/home/?cid=nrcs143_013697
 loc_df = pd.read_excel(here('./data/db/original/maps/State_FIPS.xlsx'))
+# Resource for PopulationEstimates: https://www.ers.usda.gov/data-products/county-level-data-sets/download-data/
 pop_df = pd.read_excel(here('./data/db/original/maps/PopulationEstimates.xls'))  # population dataset for 2019
 
 pop_df['fips_str'] = pop_df['FIPStxt'].apply(lambda x: f'{x:05.0f}')
@@ -37,7 +39,7 @@ molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # 
 
 molten_pop_df = pd.merge(molten_df, pop_df, on='fips_str')  # add population per county
 grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'Admin2', 'POP_ESTIMATE_2019'])['value'].sum().reset_index()
-grouped_by['value'] = grouped_by['value']/grouped_by['POP_ESTIMATE_2019']   # get per capita value
+grouped_by['total_per_cap'] = grouped_by['value']/grouped_by['POP_ESTIMATE_2019']   # get per capita value
 
 plot_data = grouped_by[grouped_by.date_iso == '2020-04-01']
 
@@ -45,11 +47,11 @@ plot_data = grouped_by[grouped_by.date_iso == '2020-04-01']
 fig = px.choropleth(plot_data,
                     geojson=counties,
                     locations=plot_data.fips_str,
-                    color='value',
+                    color='total_per_cap',
                     # animation_frame='date',
-                    hover_data=['Admin2', 'value', 'POP_ESTIMATE_2019'],
+                    hover_data=['Admin2', 'total_per_cap', 'POP_ESTIMATE_2019'],
                     color_continuous_scale='viridis_r',
-                    range_color=(0, plot_data['value'].max()),
+                    range_color=(0, plot_data['total_per_cap'].max()),
                     scope="usa",
                     title='Confirmed cases per capita',
                     labels={'value': 'confirmed cases'}
