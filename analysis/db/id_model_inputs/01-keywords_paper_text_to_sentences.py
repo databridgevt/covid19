@@ -89,9 +89,14 @@ search_terms = [
 ]
 
 tqdm.pandas(desc="Finding terms")
-paper_df['found_terms'] = paper_df['text_sent'].progress_apply(find_matches_in_list, terms=search_terms)
+paper_df['found_terms'] = paper_df['text_sent_lower'].progress_apply(find_matches_in_list, terms=search_terms)
 
 # save out working data
-if flag != '--test':
+if not flag_test:
     pl.Path(here("./data/db/working/kaggle/id_model_inputs", warn=False)).mkdir(parents=True, exist_ok=True)
     paper_df.to_pickle(here("./data/db/working/kaggle/id_model_inputs/01-sentences-keywords-2.pickle", warn=False))
+
+end_time = datetime.now()
+
+print(paper_df.head())
+print('Duration: {}'.format(end_time - start_time))
