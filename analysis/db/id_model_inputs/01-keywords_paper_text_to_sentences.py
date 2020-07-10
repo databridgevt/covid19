@@ -1,3 +1,4 @@
+from datetime import datetime
 import itertools
 import pathlib as pl
 import re
@@ -8,8 +9,6 @@ from nltk.tokenize import RegexpTokenizer
 import pandas as pd
 from pyprojroot import here
 from tqdm import tqdm
-
-print('version2')
 
 # def find_pattern_in_list(sent, pattern):
 #     return [bool(re.search(pattern, x)) for x in sent]
@@ -54,12 +53,9 @@ assert find_matches_in_list(['hello my name is dan', 'hello you', 'the quick bro
 
 
 script = sys.argv[0]
-try:
-    flag = sys.argv[1]
-except IndexError:
-    flag = ''
+flag_test = True if '--test' in sys.argv else False
 
-if flag == '--test':
+if flag_test:
     print("running test")
     paper_df = pd.read_csv(here("./data/db/final/kaggle/paper_text/document_parses_pmc_json.tsv"),
                            sep = "\t",
@@ -68,8 +64,11 @@ else :
     paper_df = pd.read_csv(here("./data/db/final/kaggle/paper_text/document_parses_pmc_json.tsv"),
                            sep = "\t")
 
+start_time = datetime.now()
+
 # break up into sentences
 sent_detector = nltk.data.load('tokenizers/punkt/english.pickle') # nltk.download('punkt')
+
 tqdm.pandas(desc="Split sentences")
 paper_df["text_sent_lower"] = paper_df["text"].progress_apply(lambda x: sent_detector.tokenize(x.lower().strip()))
 
