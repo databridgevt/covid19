@@ -14,7 +14,7 @@ external_stylesheets = [here('./analysis/db/us_map/assets/style.css')]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-'''
+
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
 # Resource for State_FIPS: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/home/?cid=nrcs143_013697
@@ -52,34 +52,46 @@ fig = px.choropleth(plot_data,
                     color_continuous_scale='viridis_r',
                     range_color=(0, plot_data[value].max()),
                     scope="usa",
-                    title='Confirmed cases',
+                    # title='Confirmed cases',
                     labels={'value': 'confirmed cases'}
                     )
-'''
+
+fig.update_layout(
+    template="plotly_dark"
+)
+
 app.layout = html.Div(children=[
                       html.Header(className='header',
                                   children=[
                                       html.H2('Virginia Tech')
                                   ]),
 
-                      html.Div(className='row',  # Define the row element
+                      html.Div(className='col-12',  # Define the row element
                                children=[
-                                  html.Div(className='four columns div-user-controls',
-                                           children=[
-                                               html.H2('Here goes graph')
-                                           ]),  # Define the left element
-                                  html.Div(className='eight columns div-for-charts bg-grey',
-                                           children=[
-                                               html.H2('Here goes map')
-                                           ])  # Define the right element
+                                   html.Div(className='col-3',  # Define the row element
+                                            children=[
+                                                html.Div(className='col-7',
+                                                         children=[
+                                                             html.H2('Here goes graph')
+                                                         ]),  # Define the left element
+                                                html.Div(className='col-8',
+                                                         children=[
+                                                             html.H2('Here goes another graph')
+                                                         ])
+                                            ]),
+                                   html.Div(className='col-9',  # Define the row element
+                                            children=[
+                                                    dcc.Graph(
+                                                        figure=fig
+                                                    )
+                                            ]
+                                            )  # Define the right element
                                   ]),
-
-                      html.Footer(className='footer',
+                      html.Footer(
                                   children=[
                                       html.P('''All rights reserved''')
                                   ])
-
-])
+                      ])
 
 
 if __name__ == '__main__':
