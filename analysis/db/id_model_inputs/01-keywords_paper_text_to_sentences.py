@@ -6,6 +6,7 @@ import sys
 
 import nltk.data
 from nltk.tokenize import RegexpTokenizer
+from nltk.tokenize import word_tokenize
 import pandas as pd
 from pyprojroot import here
 from tqdm import tqdm
@@ -22,34 +23,55 @@ from tqdm import tqdm
 #     return(dat)
 
 
-def convert_term_to_regex(term):
-    words = term.split(" ")
-    regex_pattern = ""
-    for term in words:
-        regex_pattern += f"(?=.*\\b{term}\\b)"
-    regex_pattern += ""
-    return regex_pattern
-assert convert_term_to_regex("incubation period") == "(?=.*\\bincubation\\b)(?=.*\\bperiod\\b)"
+# def convert_term_to_regex(term):
+#     words = term.split(" ")
+#     regex_pattern = ""
+#     for term in words:
+#         regex_pattern += f"(?=.*\\b{term}\\b)"
+#     regex_pattern += ""
+#     return regex_pattern
+# assert convert_term_to_regex("incubation period") == "(?=.*\\bincubation\\b)(?=.*\\bperiod\\b)"
 
 
-def find_matches_in_list(sentences, terms):
+# def find_matches_in_list(sentences, terms):
+#     """Determins if a term exists in a list of sentences
+#     """
+#     matches = {}
+#     for trm in terms:
+#         #breakpoint()
+#         pattern = convert_term_to_regex(trm)
+#         for sent in sentences:
+#             if (re.search(pattern, sent)):
+#                 matches[trm] = True
+#                 break # if there is a pattern match go to the next term
+#     return(matches)
+# assert find_matches_in_list(['hello my name is dan', 'hello you', 'the quick brown fox', 'my I have a word?'],
+#                      ['hello dan', 'fox', 'tom nook', 'word']) == {
+#                          'hello dan': True,
+#                          'fox': True,
+#                          'word': True,
+#                      }
+
+
+def find_set_in_list(sent_set, terms):
     """Determins if a term exists in a list of sentences
     """
     matches = {}
     for trm in terms:
-        #breakpoint()
-        pattern = convert_term_to_regex(trm)
-        for sent in sentences:
-            if (re.search(pattern, sent)):
+        trm_set = set(trm.split(" "))
+        for st in sent_set:
+            if (trm_set.issubset(st)):
                 matches[trm] = True
                 break # if there is a pattern match go to the next term
     return(matches)
-assert find_matches_in_list(['hello my name is dan', 'hello you', 'the quick brown fox', 'my I have a word?'],
-                     ['hello dan', 'fox', 'tom nook', 'word']) == {
-                         'hello dan': True,
-                         'fox': True,
-                         'word': True,
-                     }
+test_sent = ['dan hello', 'hello you', 'the quick brown fox', 'my I have a word?']
+test_sent_set = [set(word_tokenize(sent)) for sent in test_sent]
+assert find_set_in_list(test_sent_set,
+                        ['hello dan', 'fox', 'tom nook', 'word']) == {
+                          'hello dan': True,
+                          'fox': True,
+                          'word': True,
+                        }
 
 
 script = sys.argv[0]
@@ -87,13 +109,17 @@ search_terms = [
     "latent period",
 ]
 
+tqdm.pandas(desc="Tokenizing sentences")
+paper_df['sent_set'] = paper_df['text_sent_lower'].progress_apply(lambda x: [set(word_tokenize(sent)) for sent in x])
+
 tqdm.pandas(desc="Finding terms")
-paper_df['found_terms'] = paper_df['text_sent_lower'].progress_apply(find_matches_in_list, terms=search_terms)
+#paper_df['found_terms'] = paper_df['text_sent_lower'].progress_apply(find_matches_in_list, terms=search_terms)
+paper_df["found_terms"] = paper_df["sent_set"].progress_apply(find_set_in_list, terms=search_terms)
 
 # save out working data
 if not flag_test:
     pl.Path(here("./data/db/working/kaggle/id_model_inputs", warn=False)).mkdir(parents=True, exist_ok=True)
-    paper_df.to_pickle(here("./data/db/working/kaggle/id_model_inputs/01-sentences-keywords-2.pickle", warn=False))
+    paper_df.to_pickle(here("./data/db/working/kaggle/id_model_inputs/01-sentences-keywords-set.pickle", warn=False))
 
 end_time = datetime.now()
 
