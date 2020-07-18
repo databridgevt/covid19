@@ -5,6 +5,9 @@ from pyprojroot import here
 import plotly.express as px
 import pandas as pd
 from urllib.request import urlopen
+from datetime import datetime as dt
+from dash.dependencies import Input, Output
+import re
 import json
 
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
@@ -39,8 +42,10 @@ molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # 
 molten_pop_df = pd.merge(molten_df, pop_df, on='fips_str')  # add population per county
 grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'State', 'Admin2', 'POP_ESTIMATE_2019'])['value'].sum().reset_index()
 grouped_by['total_per_cap'] = grouped_by['value'] / grouped_by['POP_ESTIMATE_2019']  # get per capita value
+date_string = '2020-06-01'
 
-plot_data = grouped_by[grouped_by.date_iso == '2020-04-01']  # confirmed cases on a specific day
+
+plot_data = grouped_by[grouped_by.date_iso == date_string]  # confirmed cases on a specific day
 value = 'value'   # 'value' = raw count, 'total_per_cap' = per capita
 
 # confirmed cases per capita/raw count
@@ -81,10 +86,18 @@ app.layout = html.Div(children=[
                                             ]),
                                    html.Div(className='col-9',  # Define the row element
                                             children=[
-                                                    dcc.Graph(
-                                                        figure=fig
-                                                    )
-                                            ]
+                                                        dcc.DatePickerSingle(
+                                                            id='my-date-picker-single',
+                                                            min_date_allowed=dt(2020, 1, 22),
+                                                            max_date_allowed=dt(2020, 7, 16),
+                                                            initial_visible_month=dt(2020, 7, 16),
+                                                            date=str(dt(2020, 7, 16, 23, 59, 59))
+                                                        ),
+                                                        html.Div(id='output-container-date-picker-single'),
+                                                        dcc.Graph(
+                                                            figure=fig
+                                                        )
+                                                ]
                                             )  # Define the right element
                                   ]),
                       html.Footer(
@@ -92,6 +105,16 @@ app.layout = html.Div(children=[
                                       html.P('''All rights reserved''')
                                   ])
                       ])
+
+
+@app.callback(
+    Output('output-container-date-picker-single', 'children'),
+    [Input('my-date-picker-single', 'date')])
+def update_output(date):
+    if date is not None:
+        date = dt.strptime(re.split('[T ]', date)[0], '%Y-%m-%d')
+        date_string = date.strftime('%B %d, %Y')
+        return date_string
 
 
 if __name__ == '__main__':
