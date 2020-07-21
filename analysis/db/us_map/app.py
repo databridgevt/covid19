@@ -118,7 +118,7 @@ def update_figure(date):
                         color=value,
                         hover_data=['State', 'Admin2', value, 'POP_ESTIMATE_2019'],
                         color_continuous_scale='viridis_r',
-                        range_color=(0, 500),  # plot_data[value].max()
+                        range_color=(0, plot_data['total_per_cap'].max()),  # plot_data[value].max()
                         scope="usa",
                         # title='Confirmed cases',
                         labels={'value': 'confirmed cases'}
