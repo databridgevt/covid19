@@ -5,9 +5,7 @@ from pyprojroot import here
 import plotly.express as px
 import pandas as pd
 from urllib.request import urlopen
-from datetime import datetime as dt
 from dash.dependencies import Input, Output
-import re
 import json
 
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
@@ -39,9 +37,9 @@ molten_df = merged_df.melt(
 molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # change date to ISO8601 standard format
 
 molten_pop_df = pd.merge(molten_df, pop_df, on='fips_str')  # add population per county
-grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'State', 'Admin2', 'POP_ESTIMATE_2019'])[
+grouped_by_df = molten_pop_df.groupby(['fips_str', 'date_iso', 'State', 'Admin2', 'POP_ESTIMATE_2019'])[
     'value'].sum().reset_index()
-grouped_by['total_per_cap'] = grouped_by['value'] / grouped_by['POP_ESTIMATE_2019']  # get per capita value
+grouped_by_df['total_per_cap'] = grouped_by_df['value'] / grouped_by_df['POP_ESTIMATE_2019']  # get per capita value
 date_string = '2020-06-01'
 
 # plot_data = grouped_by[grouped_by.date_iso == date_string]  # confirmed cases on a specific day
@@ -94,10 +92,10 @@ app.layout = html.Div(children=[
                               ),
                               dcc.DatePickerSingle(
                                   id='my-date-picker-single',
-                                  min_date_allowed=dt(2020, 1, 22),
-                                  max_date_allowed=dt(2020, 7, 16),
-                                  initial_visible_month=dt(2020, 7, 16),
-                                  date=str(dt(2020, 7, 16, 23, 59, 59))
+                                  min_date_allowed=molten_df.date_iso.iat[0],
+                                  max_date_allowed=molten_df.date_iso.iat[-1],
+                                  initial_visible_month=molten_df.date_iso.iat[-1],
+                                  date=str(molten_df.date_iso.iat[-1])
                               )
                           ]
                           )
@@ -113,7 +111,7 @@ app.layout = html.Div(children=[
     Output('map', 'figure'),
     [Input('my-date-picker-single', 'date')])
 def update_figure(date):
-    plot_data = grouped_by[grouped_by.date_iso == date]
+    plot_data = grouped_by_df[grouped_by_df.date_iso == date]
     fig = px.choropleth(plot_data,
                         geojson=counties,
                         locations=plot_data.fips_str,
