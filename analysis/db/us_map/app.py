@@ -17,7 +17,6 @@ external_stylesheets = [here('./analysis/db/us_map/assets/style.css')]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
 # Resource for State_FIPS: https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/home/?cid=nrcs143_013697
@@ -40,15 +39,17 @@ molten_df = merged_df.melt(
 molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # change date to ISO8601 standard format
 
 molten_pop_df = pd.merge(molten_df, pop_df, on='fips_str')  # add population per county
-grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'State', 'Admin2', 'POP_ESTIMATE_2019'])['value'].sum().reset_index()
+grouped_by = molten_pop_df.groupby(['fips_str', 'date_iso', 'State', 'Admin2', 'POP_ESTIMATE_2019'])[
+    'value'].sum().reset_index()
 grouped_by['total_per_cap'] = grouped_by['value'] / grouped_by['POP_ESTIMATE_2019']  # get per capita value
 date_string = '2020-06-01'
 
+# plot_data = grouped_by[grouped_by.date_iso == date_string]  # confirmed cases on a specific day
 
-plot_data = grouped_by[grouped_by.date_iso == date_string]  # confirmed cases on a specific day
-value = 'value'   # 'value' = raw count, 'total_per_cap' = per capita
+value = 'value'  # 'value' = raw count, 'total_per_cap' = per capita
 
 # confirmed cases per capita/raw count
+'''
 fig = px.choropleth(plot_data,
                     geojson=counties,
                     locations=plot_data.fips_str,
@@ -64,57 +65,70 @@ fig = px.choropleth(plot_data,
 fig.update_layout(
     template="plotly_dark"
 )
-
+'''
 app.layout = html.Div(children=[
-                      html.Header(className='header',
-                                  children=[
-                                      html.H2('Virginia Tech')
-                                  ]),
+    html.Header(className='header',
+                children=[
+                    html.H2('Virginia Tech')
+                ]),
 
-                      html.Div(className='col-12',  # Define the row element
-                               children=[
-                                   html.Div(className='col-3',  # Define the row element
-                                            children=[
-                                                html.Div(className='col-7',
-                                                         children=[
-                                                             html.H2('Here goes graph')
-                                                         ]),  # Define the left element
-                                                html.Div(className='col-8',
-                                                         children=[
-                                                             html.H2('Here goes another graph')
-                                                         ])
-                                            ]),
-                                   html.Div(className='col-9',  # Define the row element
-                                            children=[
-                                                        dcc.DatePickerSingle(
-                                                            id='my-date-picker-single',
-                                                            min_date_allowed=dt(2020, 1, 22),
-                                                            max_date_allowed=dt(2020, 7, 16),
-                                                            initial_visible_month=dt(2020, 7, 16),
-                                                            date=str(dt(2020, 7, 16, 23, 59, 59))
-                                                        ),
-                                                        html.Div(id='output-container-date-picker-single'),
-                                                        dcc.Graph(
-                                                            figure=fig
-                                                        )
-                                                ]
-                                            )  # Define the right element
-                                  ]),
-                      html.Footer(
-                                  children=[
-                                      html.P('''All rights reserved''')
-                                  ])
-                      ])
+    html.Div(className='col-12',  # Define the body element
+             children=[
+                 html.Div(className='col-3',  # Define the left 2 elements
+                          children=[
+                              html.Div(className='col-7',  # Define the upper left element
+                                       children=[
+                                           html.H2('Here goes graph')
+                                       ]),
+                              html.Div(className='col-8',  # Define the lower left element
+                                       children=[
+                                           html.H2('Here goes another graph')
+                                       ])
+                          ]),
+                 html.Div(className='col-9',  # Define the right element (map)
+                          children=[
+                              html.Div(id='output-container-date-picker-single'),
+                              dcc.Graph(
+                                  id='map'
+                                  # figure=fig
+                              ),
+                              dcc.DatePickerSingle(
+                                  id='my-date-picker-single',
+                                  min_date_allowed=dt(2020, 1, 22),
+                                  max_date_allowed=dt(2020, 7, 16),
+                                  initial_visible_month=dt(2020, 7, 16),
+                                  date=str(dt(2020, 7, 16, 23, 59, 59))
+                              )
+                          ]
+                          )
+             ]),
+    html.Footer(
+        children=[
+            html.P('''All rights reserved''')
+        ])
+])
 
 
 @app.callback(
-    Output('output-container-date-picker-single', 'children'),
+    Output('map', 'figure'),
     [Input('my-date-picker-single', 'date')])
-def update_output(date):
-    if date is not None:
-        date = dt.strptime(re.split('[T ]', date)[0], '%Y-%m-%d')
-        date_string = date.strftime('%B %d, %Y')
-        return date_string
+def update_figure(date):
+    plot_data = grouped_by[grouped_by.date_iso == date]
+    fig = px.choropleth(plot_data,
+                        geojson=counties,
+                        locations=plot_data.fips_str,
+                        color=value,
+                        hover_data=['State', 'Admin2', value, 'POP_ESTIMATE_2019'],
+                        color_continuous_scale='viridis_r',
+                        range_color=(0, 500),  # plot_data[value].max()
+                        scope="usa",
+                        # title='Confirmed cases',
+                        labels={'value': 'confirmed cases'}
+                        )
+    fig.update_layout(
+        template="plotly_dark"
+    )
+    return fig
 
 
 if __name__ == '__main__':
