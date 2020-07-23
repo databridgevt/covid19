@@ -13,7 +13,7 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 
 external_stylesheets = [here('./analysis/db/us_map/assets/style.css')]
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
 
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
@@ -85,11 +85,17 @@ app.layout = html.Div(children=[
                           ]),
                  html.Div(className='col-9',  # Define the right element (map)
                           children=[
-                              html.Div(id='output-container-date-picker-single'),
-                              dcc.Graph(
-                                  id='map'
-                                  # figure=fig
-                              ),
+                              dcc.Tabs(id="tabs-styled-with-props", value='tab-1', children=[
+                                  dcc.Tab(label='Raw count', value='tab-1'),
+                                  dcc.Tab(label='Per capita', value='tab-2'),
+                                  dcc.Tab(label='Active', value='tab-3'),
+                                  dcc.Tab(label='Death count', value='tab-4'),
+                              ], colors={
+                                  "border": "black",
+                                  "primary": "black",
+                                  "background": "black"
+                              }),
+                              html.Div(id='tabs-content-props'),
                               dcc.DatePickerSingle(
                                   id='my-date-picker-single',
                                   min_date_allowed=molten_df.date_iso.iat[0],
@@ -107,6 +113,44 @@ app.layout = html.Div(children=[
 ])
 
 
+@app.callback(Output('tabs-content-props', 'children'),
+              [Input('tabs-styled-with-props', 'value')])
+def render_content(tab):
+    global value
+    if tab == 'tab-1':
+        value = 'value'
+        return html.Div([
+            html.Div(id='output-container-date-picker-single'),
+            dcc.Graph(
+                id='map'
+            )
+        ])
+    elif tab == 'tab-2':
+        value = 'total_per_cap'
+        return html.Div([
+            html.Div(id='output-container-date-picker-single'),
+            dcc.Graph(
+                id='map'
+            )
+        ])
+    elif tab == 'tab-3':
+        value = 'total_per_cap'
+        return html.Div([
+            html.Div(id='output-container-date-picker-single'),
+            dcc.Graph(
+                id='map'
+            )
+        ])
+    elif tab == 'tab-4':
+        value = 'total_per_cap'
+        return html.Div([
+            html.Div(id='output-container-date-picker-single'),
+            dcc.Graph(
+                id='map'
+            )
+        ])
+
+
 @app.callback(
     Output('map', 'figure'),
     [Input('my-date-picker-single', 'date')])
@@ -118,7 +162,7 @@ def update_figure(date):
                         color=value,
                         hover_data=['State', 'Admin2', value, 'POP_ESTIMATE_2019'],
                         color_continuous_scale='viridis_r',
-                        range_color=(0, plot_data['total_per_cap'].max()),  # plot_data[value].max()
+                        range_color=(0, plot_data[value].max()),  # plot_data[value].max()
                         scope="usa",
                         # title='Confirmed cases',
                         labels={'value': 'confirmed cases'}
