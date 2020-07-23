@@ -74,6 +74,35 @@ footer {
   height: 100vh;
   width: 100%;
 }
+.custom-tabs-container {
+    width: 50%;
+}
+.custom-tabs {
+    color:red;
+    border-top-left-radius: 3px;
+    background-color: blue;
+    padding: 0px 24px;
+    border-bottom: 1px solid yellow !important;
+    overflow: hidden;
+}
+.custom-tab{
+  color:white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-style: inset;
+  border-color: red;
+  background-color: black !important;
+  overflow: hidden;
+}
+.custom-tab--selected{
+  color:white !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-style: inset;
+  border-color: gold !important;
+  background-color: black !important;
+  overflow: hidden;
+}
 #histogram {
   flex-grow: 1 
 }

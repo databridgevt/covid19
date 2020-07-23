@@ -85,16 +85,32 @@ app.layout = html.Div(children=[
                           ]),
                  html.Div(className='col-9',  # Define the right element (map)
                           children=[
-                              dcc.Tabs(id="tabs-styled-with-props", value='tab-1', children=[
-                                  dcc.Tab(label='Raw count', value='tab-1'),
-                                  dcc.Tab(label='Per capita', value='tab-2'),
-                                  dcc.Tab(label='Active', value='tab-3'),
-                                  dcc.Tab(label='Death count', value='tab-4'),
-                              ], colors={
-                                  "border": "black",
-                                  "primary": "black",
-                                  "background": "black"
-                              }),
+                              dcc.Tabs(id="tabs-styled-with-props",
+                                       value='tab-1',
+                                       parent_className='custom-tabs',
+                                       className='custom-tabs-container',
+                                       children=[
+                                           dcc.Tab(label='Raw count',
+                                                   value='tab-1',
+                                                   className='custom-tab',
+                                                   selected_className='custom-tab--selected'
+                                                   ),
+                                           dcc.Tab(label='Per capita',
+                                                   value='tab-2',
+                                                   className='custom-tab',
+                                                   selected_className='custom-tab--selected'
+                                                   ),
+                                           dcc.Tab(label='Active',
+                                                   value='tab-3',
+                                                   className='custom-tab',
+                                                   selected_className='custom-tab--selected'
+                                                   ),
+                                           dcc.Tab(label='Death count',
+                                                   value='tab-4',
+                                                   className='custom-tab',
+                                                   selected_className='custom-tab--selected'
+                                                   ),
+                                       ]),
                               html.Div(id='tabs-content-props'),
                               dcc.DatePickerSingle(
                                   id='my-date-picker-single',
