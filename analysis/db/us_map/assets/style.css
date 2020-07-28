@@ -75,32 +75,31 @@ footer {
   width: 100%;
 }
 .custom-tabs-container {
-    width: 50%;
+    width: 100%;
 }
 .custom-tabs {
-    color:red;
     border-top-left-radius: 3px;
-    background-color: blue;
-    padding: 0px 24px;
-    border-bottom: 1px solid yellow !important;
+    background-color: #222;
+    padding: 0px 14px;
+    border-style: none;
     overflow: hidden;
 }
 .custom-tab{
   color:white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  border-style: inset;
+  border-style: none;
   border-color: red;
-  background-color: black !important;
+  background-color: #222 !important;
   overflow: hidden;
 }
 .custom-tab--selected{
   color:white !important;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  border-style: inset;
+  border-style: outset;
   border-color: gold !important;
-  background-color: black !important;
+  background-color: rgb(56,56,56) !important;
   overflow: hidden;
 }
 #histogram {
