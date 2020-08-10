@@ -4,9 +4,11 @@ import dash_html_components as html
 from pyprojroot import here
 import plotly.express as px
 import pandas as pd
+import numpy as np
 from urllib.request import urlopen
 from dash.dependencies import Input, Output
 import pathlib as pl
+import plotly.graph_objects as go
 import plotly.io as pio
 import json
 
@@ -73,11 +75,14 @@ merged_grouped = pd.merge(grouped_by_df, grouped_by_death_df,
                           on=['fips_str', 'date_iso', 'Admin2', 'Province_State', 'POP_ESTIMATE_2019'])
 merged_grouped["name"] = merged_grouped["Admin2"] + " County, " + merged_grouped["Province_State"]
 
+
 # get per 100000 values
 merged_grouped['confirmed_per_100000'] = merged_grouped['confirmed_cases'] / \
                                          merged_grouped['POP_ESTIMATE_2019'] * 100_000
 merged_grouped['deaths_per_100000'] = merged_grouped['deaths'] / \
                                       merged_grouped['POP_ESTIMATE_2019'] * 100_000
+
+merged_grouped['POP_ESTIMATE_2019_f'] = merged_grouped.apply(lambda x: "{:,}".format(x['POP_ESTIMATE_2019']), axis=1)
 
 
 app.layout = html.Div(children=[
@@ -149,9 +154,18 @@ app.layout = html.Div(children=[
               [Input('tabs-styled-with-props', 'value')])
 def render_content(tab):
     global value
+    global title
     # global plot_data
     if tab == 'tab-1':
         value = 'confirmed_cases'
+        title = '<b>County-Level View of COVID-19 Confirmed Cases</b><br>' \
+                '<span style="font-size: 12px;">' \
+                '<b>Confirmed</b> cases include presumptive cumulative <b>positive cases</b><br> </span>'\
+                '<span style="font-size: 10px;">' \
+                'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
+                'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv">' \
+                'Coronavirus COVID-19 Cases by the Center for Systems Science and Engineering ' \
+                'at Johns Hopkins University</span></a>'
         # plot_data = grouped_by_df
         return html.Div([
             html.Div(id='output-container-date-picker-single',),
@@ -161,6 +175,15 @@ def render_content(tab):
         ])
     elif tab == 'tab-2':
         value = 'confirmed_per_100000'
+        title = '<b>County-Level View of COVID-19 Confirmed Cases Per 100,000</b><br>' \
+                '<span style="font-size: 12px;">' \
+                '<b>Confirmed</b> cases include presumptive cumulative <b>positive cases</b> ' \
+                'per 100,000 population<br> </span>'\
+                '<span style="font-size: 10px;">' \
+                'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
+                'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv">' \
+                'Coronavirus COVID-19 Cases by the Center for Systems Science and Engineering ' \
+                'at Johns Hopkins University</span></a>'
         # plot_data = grouped_by_df
         return html.Div([
             html.Div(id='output-container-date-picker-single'),
@@ -169,7 +192,7 @@ def render_content(tab):
             )
         ])
     elif tab == 'tab-3':
-        value = 'total_per_cap'
+        value = 'confirmed_per_100000'
         return html.Div([
             html.Div(id='output-container-date-picker-single'),
             dcc.Graph(
@@ -178,6 +201,15 @@ def render_content(tab):
         ])
     elif tab == 'tab-4':
         value = 'deaths_per_100000'  # 'deaths' for raw count
+        title = '<b>County-Level View of COVID-19 Death Cases Per 100,000</b><br>' \
+                '<span style="font-size: 12px;">' \
+                '<b>Death</b> cases include presumptive cumulative <b>death cases</b> ' \
+                'per 100,000 population<br> </span>'\
+                '<span style="font-size: 10px;">' \
+                'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
+                'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv">' \
+                'Coronavirus COVID-19 Cases by the Center for Systems Science and Engineering ' \
+                'at Johns Hopkins University</span></a>'
         # plot_data = grouped_by_death_df
         return html.Div([
             html.Div(id='output-container-date-picker-single'),
@@ -198,19 +230,28 @@ def update_figure(date):
                         locations=plot_data.fips_str,
                         color=value,
                         hover_name='name',
-                        hover_data=[value, 'POP_ESTIMATE_2019'],
+                        hover_data=[value, 'POP_ESTIMATE_2019_f'],
                         color_continuous_scale='viridis_r',
-                        range_color=(0, plot_data[value].max()),  # plot_data[value].max()
+                        range_color=(0, np.quantile(plot_data[value], .75)),  # plot_data[value].max()
                         scope="usa",
-                        # title='Confirmed cases',
+                        # title=title,
                         labels={'fips_str': 'Fips code',
-                                'POP_ESTIMATE_2019': 'Population',
+                                'POP_ESTIMATE_2019_f': 'Population',
                                 'confirmed_cases': 'Confirmed cases',
                                 'confirmed_per_100000': 'Confirmed per 100,000',
                                 'deaths_per_100000': 'Deaths per 100,000'}
                         )
     fig.update_layout(
-        template="gridon"
+        margin={"r": 0, "l": 0, "b": 0},
+        title=f'{title}',
+        title_font_family="Times New Roman",
+        template="gridon",
+        coloraxis_colorbar=dict(title='',
+                                yanchor="top",
+                                y=1,
+                                ticks="outside",
+                                ticksuffix=" cases",
+                                separatethousands=True)
     )
     return fig
 
@@ -224,29 +265,49 @@ if __name__ == '__main__':
 
 
 '''
-# Test maps separately 
-plot_data = merged_grouped[merged_grouped.date_iso == '2020-06-28']
 
+# Test maps separately
+plot_data = merged_grouped[merged_grouped.date_iso == '2020-07-28']
+title = '<b>County-Level View of COVID-19 Death Cases Per 100,000</b><br>' \
+                '<span style="font-size: 12px;">' \
+                '<b>Death</b> cases include presumptive cumulative <b>death cases</b> ' \
+                'per 100,000 population<br> </span>'\
+                '<span style="font-size: 10px;">' \
+                'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
+                'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv">' \
+                'Coronavirus COVID-19 Cases by the Center for Systems Science and Engineering ' \
+                'at Johns Hopkins University</span></a>'
 fig = px.choropleth(plot_data,
                     geojson=counties,
                     locations=plot_data.fips_str,
-                    color='confirmed_cases',
+                    color='deaths_per_100000',
                     hover_name='name',
-                    hover_data=['POP_ESTIMATE_2019'],
+                    hover_data=['POP_ESTIMATE_2019_f'],
                     color_continuous_scale='viridis_r',
-                    range_color=(0, plot_data['confirmed_cases'].max()),  # plot_data[value].max()
+                    range_color=(0, np.quantile(plot_data['deaths_per_100000'], .75)),  # plot_data[value].max()
                     scope="usa",
-                    title='Death cases per 100,000',
+                    title=title,
                     labels={'fips_str': 'Fips code',
-                            'POP_ESTIMATE_2019': 'Population',
+                            'POP_ESTIMATE_2019_f': 'Population',
                             'confirmed_cases': 'Confirmed cases',
                             'confirmed_per_100000': 'Confirmed per 100,000',
                             'deaths_per_100000': 'Deaths per 100,000'}
                     )
-fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+fig.update_layout(
+    margin={"r": 0, "l": 0, "b": 0},
+    # title=f'<b>{title}</b>',
+    title_font_family="Times New Roman",
+    template="gridon",
+    coloraxis_colorbar=dict(title='',
+                            yanchor="top",
+                            y=1,
+                            ticks="outside",
+                            ticksuffix=" cases",
+                            separatethousands=True)
+)
 # fig.show()
 pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
 pio.write_html(fig,
-               file=str(here("./output/maps/choropleth_us_confirmed_cases.html", warn=False)),
+               file=str(here("./output/maps/choropleth_us_death_cases.html", warn=False)),
                auto_open=True)
 '''
