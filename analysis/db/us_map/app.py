@@ -7,6 +7,8 @@ import pandas as pd
 import numpy as np
 from urllib.request import urlopen
 from dash.dependencies import Input, Output
+from waitress import serve
+import flask
 import pathlib as pl
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -18,8 +20,10 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 # TODO: color "Great Salt Lake" in Utah state
 
 external_stylesheets = [here('./analysis/db/us_map/assets/style.css')]
+server = flask.Flask(__name__)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True, server=server)
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
+
 
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
@@ -32,6 +36,53 @@ pop_df = pd.read_excel(here('./data/db/original/maps/PopulationEstimates.xls')) 
 pop_df['fips_str'] = pop_df['FIPStxt'].apply(lambda x: f'{x:05.0f}')
 confirmed_df['fips_str'] = confirmed_df['FIPS'].apply(lambda x: f'{x:05.0f}')
 death_df['fips_str'] = confirmed_df['FIPS'].apply(lambda x: f'{x:05.0f}')
+
+
+'''
+# melt tables to have separate "date" and "values" columns
+molten_df = confirmed_df.melt(
+    id_vars=['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2',
+             'Province_State', 'Country_Region', 'Lat', 'Long_', 'Combined_Key',
+             'fips_str'],
+    var_name=['date']
+)
+molten_death_df = death_df.melt(
+    id_vars=['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2',
+             'Province_State', 'Country_Region', 'Lat', 'Long_', 'Combined_Key',
+             'fips_str', 'Population'],   # 'Area_Name', 'POP_ESTIMATE_2019',
+    var_name=['date']
+)
+
+# change "value" column names
+molten_df = molten_df.rename(columns={'value': 'confirmed_cases'})
+molten_death_df = molten_death_df.rename(columns={'value': 'deaths'})
+
+# format the date as 'yyyy-mm-dd'
+molten_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")  # format date as 'yyyy-mm-dd'
+molten_death_df['date_iso'] = pd.to_datetime(molten_df['date'], format="%m/%d/%y")
+
+# replace fips code of Oglala County to avoid missing counties on the map
+molten_df['fips_str'] = molten_df['fips_str'].replace(['46102'], '46113')  # replace new fips code with old one
+molten_death_df['fips_str'] = molten_death_df['fips_str'].replace(['46102'], '46113')
+
+grouped_by_df = molten_df.groupby(['fips_str', 'date_iso', 'Admin2', 'Province_State'])[
+    'confirmed_cases'].sum().reset_index()
+
+grouped_by_death_df = molten_death_df.groupby(['fips_str', 'date_iso', 'Admin2','Province_State', 'Population'])[
+    'deaths'].sum().reset_index()
+
+merged_grouped = pd.merge(grouped_by_df, grouped_by_death_df,
+                          on=['date_iso', 'Admin2', 'Province_State'])
+print(merged_grouped)
+merged_grouped["name"] = merged_grouped["Admin2"] + " County, " + merged_grouped["Province_State"]
+
+print(molten_df.loc[molten_df["Province_State"]=="Utah"])
+print(grouped_by_df)
+print(molten_death_df)
+print(grouped_by_death_df)
+'''
+
+
 
 pop_short_df = pop_df[['fips_str', 'Area_Name', 'POP_ESTIMATE_2019']]  # shorten columns in population dataset
 
@@ -78,9 +129,9 @@ merged_grouped["name"] = merged_grouped["Admin2"] + " County, " + merged_grouped
 
 # get per 100000 values
 merged_grouped['confirmed_per_100000'] = merged_grouped['confirmed_cases'] / \
-                                         merged_grouped['POP_ESTIMATE_2019'] * 100_000
+                                         merged_grouped['POP_ESTIMATE_2019'] * 100000
 merged_grouped['deaths_per_100000'] = merged_grouped['deaths'] / \
-                                      merged_grouped['POP_ESTIMATE_2019'] * 100_000
+                                      merged_grouped['POP_ESTIMATE_2019'] * 100000
 
 merged_grouped['POP_ESTIMATE_2019_f'] = merged_grouped.apply(lambda x: "{:,}".format(x['POP_ESTIMATE_2019']), axis=1)
 
@@ -257,6 +308,8 @@ def update_figure(date):
 
 
 if __name__ == '__main__':
+    # serve(app, port=5000)
+
     app.run_server(
         debug=True,
         port=8070,
@@ -265,10 +318,9 @@ if __name__ == '__main__':
 
 
 '''
-
 # Test maps separately
 plot_data = merged_grouped[merged_grouped.date_iso == '2020-07-28']
-title = '<b>County-Level View of COVID-19 Death Cases Per 100,000</b><br>' \
+title = '<b>County-Level View of COVID-19 Confirmed Cases</b><br>' \
                 '<span style="font-size: 12px;">' \
                 '<b>Death</b> cases include presumptive cumulative <b>death cases</b> ' \
                 'per 100,000 population<br> </span>'\
@@ -280,11 +332,11 @@ title = '<b>County-Level View of COVID-19 Death Cases Per 100,000</b><br>' \
 fig = px.choropleth(plot_data,
                     geojson=counties,
                     locations=plot_data.fips_str,
-                    color='deaths_per_100000',
+                    color='confirmed_cases',
                     hover_name='name',
                     hover_data=['POP_ESTIMATE_2019_f'],
                     color_continuous_scale='viridis_r',
-                    range_color=(0, np.quantile(plot_data['deaths_per_100000'], .75)),  # plot_data[value].max()
+                    range_color=(0, np.quantile(plot_data['confirmed_cases'], .75)),  # plot_data[value].max()
                     scope="usa",
                     title=title,
                     labels={'fips_str': 'Fips code',
@@ -308,6 +360,58 @@ fig.update_layout(
 # fig.show()
 pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
 pio.write_html(fig,
-               file=str(here("./output/maps/choropleth_us_death_cases.html", warn=False)),
+               file=str(here("./output/maps/choropleth_us_cases.html", warn=False)),
+               auto_open=True)
+'''
+
+'''
+# pd.set_option('display.max_rows', None)
+# print(merged_grouped.loc[merged_grouped['name']=='Garfield County, Utah'])
+# print(merged_grouped.loc[merged_grouped['name']=='Garfield County, Utah'].sum())
+# Test maps separately
+plot_data = merged_grouped[merged_grouped.date_iso == '2020-07-28']
+title = '<b>County-Level View of COVID-19 Confirmed Cases</b><br>' \
+                '<span style="font-size: 12px;">' \
+                '<b>Death</b> cases include presumptive cumulative <b>death cases</b> ' \
+                'per 100,000 population<br> </span>'\
+                '<span style="font-size: 10px;">' \
+                'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
+                'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv">' \
+                'Coronavirus COVID-19 Cases by the Center for Systems Science and Engineering ' \
+                'at Johns Hopkins University</span></a>'
+fig = px.choropleth(plot_data,
+                    geojson=counties,
+                    lat=plot_data.Lat,
+                    lon=plot_data.Long_,
+                    # locations=plot_data.fips_str,
+                    color='confirmed_cases',
+                    hover_name='name',
+                    hover_data=['POP_ESTIMATE_2019_f'],
+                    color_continuous_scale='viridis_r',
+                    range_color=(0, np.quantile(plot_data['confirmed_cases'], .75)),  # plot_data[value].max()
+                    scope="usa",
+                    title=title,
+                    labels={'fips_str': 'Fips code',
+                            'POP_ESTIMATE_2019_f': 'Population',
+                            'confirmed_cases': 'Confirmed cases',
+                            'confirmed_per_100000': 'Confirmed per 100,000',
+                            'deaths_per_100000': 'Deaths per 100,000'}
+                    )
+fig.update_layout(
+    margin={"r": 0, "l": 0, "b": 0},
+    # title=f'<b>{title}</b>',
+    title_font_family="Times New Roman",
+    template="gridon",
+    coloraxis_colorbar=dict(title='',
+                            yanchor="top",
+                            y=1,
+                            ticks="outside",
+                            ticksuffix=" cases",
+                            separatethousands=True)
+)
+# fig.show()
+pl.Path(here("./output/maps", warn=False)).mkdir(parents=True, exist_ok=True)
+pio.write_html(fig,
+               file=str(here("./output/maps/choropleth_us_cases.html", warn=False)),
                auto_open=True)
 '''
