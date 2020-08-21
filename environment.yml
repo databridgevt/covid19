@@ -19,6 +19,7 @@ dependencies:
   - pyyaml=5.3.1
   - seaborn=0.10.1
   - shapely=1.7.0
+  - waitress=1.4.3
   - xlrd=1.2.0
   - pip:
     - ibm-watson==4.3.0
