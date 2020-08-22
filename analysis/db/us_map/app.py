@@ -23,8 +23,6 @@ external_stylesheets = [here('./analysis/db/us_map/assets/style.css')]
 server = flask.Flask(__name__)
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True, server=server)
 
-
-
 confirmed_df = pd.read_csv('https://github.com/CSSEGISandData/COVID-19/raw/master/csse_covid_19_data/'
                            'csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
 death_df = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/'
@@ -36,7 +34,6 @@ pop_df = pd.read_excel(here('./data/db/original/maps/PopulationEstimates.xls')) 
 pop_df['fips_str'] = pop_df['FIPStxt'].apply(lambda x: f'{x:05.0f}')
 confirmed_df['fips_str'] = confirmed_df['FIPS'].apply(lambda x: f'{x:05.0f}')
 death_df['fips_str'] = confirmed_df['FIPS'].apply(lambda x: f'{x:05.0f}')
-
 
 '''
 # melt tables to have separate "date" and "values" columns
@@ -82,8 +79,6 @@ print(molten_death_df)
 print(grouped_by_death_df)
 '''
 
-
-
 pop_short_df = pop_df[['fips_str', 'Area_Name', 'POP_ESTIMATE_2019']]  # shorten columns in population dataset
 
 # merge population dataset with confirmed and death cases on fips codes
@@ -100,7 +95,7 @@ molten_df = merged_confirmed_df.melt(
 molten_death_df = merged_death_df.melt(
     id_vars=['UID', 'iso2', 'iso3', 'code3', 'FIPS', 'Admin2',
              'Province_State', 'Country_Region', 'Lat', 'Long_', 'Combined_Key',
-             'fips_str', 'Population', 'Area_Name', 'POP_ESTIMATE_2019'],   # 'Area_Name', 'POP_ESTIMATE_2019',
+             'fips_str', 'Population', 'Area_Name', 'POP_ESTIMATE_2019'],  # 'Area_Name', 'POP_ESTIMATE_2019',
     var_name=['date']
 )
 
@@ -119,13 +114,13 @@ molten_death_df['fips_str'] = molten_death_df['fips_str'].replace(['46102'], '46
 grouped_by_df = molten_df.groupby(['fips_str', 'date_iso', 'Admin2', 'Province_State', 'POP_ESTIMATE_2019'])[
     'confirmed_cases'].sum().reset_index()
 
-grouped_by_death_df = molten_death_df.groupby(['fips_str', 'date_iso', 'Admin2','Province_State', 'POP_ESTIMATE_2019'])[
+grouped_by_death_df = \
+molten_death_df.groupby(['fips_str', 'date_iso', 'Admin2', 'Province_State', 'POP_ESTIMATE_2019'])[
     'deaths'].sum().reset_index()
 
 merged_grouped = pd.merge(grouped_by_df, grouped_by_death_df,
                           on=['fips_str', 'date_iso', 'Admin2', 'Province_State', 'POP_ESTIMATE_2019'])
 merged_grouped["name"] = merged_grouped["Admin2"] + " County, " + merged_grouped["Province_State"]
-
 
 # get per 100000 values
 merged_grouped['confirmed_per_100000'] = merged_grouped['confirmed_cases'] / \
@@ -134,7 +129,6 @@ merged_grouped['deaths_per_100000'] = merged_grouped['deaths'] / \
                                       merged_grouped['POP_ESTIMATE_2019'] * 100000
 
 merged_grouped['POP_ESTIMATE_2019_f'] = merged_grouped.apply(lambda x: "{:,}".format(x['POP_ESTIMATE_2019']), axis=1)
-
 
 app.layout = html.Div(children=[
     html.Header(className='header',
@@ -157,6 +151,14 @@ app.layout = html.Div(children=[
                           ]),
                  html.Div(className='col-9',  # Define the right element (map)
                           children=[
+                              dcc.DatePickerSingle(   # calendar tab
+                                  id='my-date-picker-single',
+                                  className='my-date-picker-single',
+                                  min_date_allowed=molten_df.date_iso.iat[0],
+                                  max_date_allowed=molten_df.date_iso.iat[-1],
+                                  initial_visible_month=molten_df.date_iso.iat[-1],
+                                  date=str(molten_df.date_iso.iat[-1])
+                              ),
                               dcc.Tabs(id="tabs-styled-with-props",
                                        value='tab-1',
                                        parent_className='custom-tabs',
@@ -183,14 +185,7 @@ app.layout = html.Div(children=[
                                                    selected_className='custom-tab--selected'
                                                    ),
                                        ]),
-                              html.Div(id='tabs-content-props'),
-                              dcc.DatePickerSingle(
-                                  id='my-date-picker-single',
-                                  min_date_allowed=molten_df.date_iso.iat[0],
-                                  max_date_allowed=molten_df.date_iso.iat[-1],
-                                  initial_visible_month=molten_df.date_iso.iat[-1],
-                                  date=str(molten_df.date_iso.iat[-1])
-                              )
+                              html.Div(id='tabs-content-props')
                           ]
                           )
              ]),
@@ -211,7 +206,7 @@ def render_content(tab):
         value = 'confirmed_cases'
         title = '<b>County-Level View of COVID-19 Confirmed Cases</b><br>' \
                 '<span style="font-size: 12px;">' \
-                '<b>Confirmed</b> cases include presumptive cumulative <b>positive cases</b><br> </span>'\
+                '<b>Confirmed</b> cases include presumptive cumulative <b>positive cases</b><br> </span>' \
                 '<span style="font-size: 10px;">' \
                 'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
                 'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv">' \
@@ -219,7 +214,7 @@ def render_content(tab):
                 'at Johns Hopkins University</span></a>'
         # plot_data = grouped_by_df
         return html.Div([
-            html.Div(id='output-container-date-picker-single',),
+            html.Div(id='output-container-date-picker-single', ),
             dcc.Graph(
                 id='map'
             )
@@ -229,7 +224,7 @@ def render_content(tab):
         title = '<b>County-Level View of COVID-19 Confirmed Cases Per 100,000</b><br>' \
                 '<span style="font-size: 12px;">' \
                 '<b>Confirmed</b> cases include presumptive cumulative <b>positive cases</b> ' \
-                'per 100,000 population<br> </span>'\
+                'per 100,000 population<br> </span>' \
                 '<span style="font-size: 10px;">' \
                 'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
                 'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv">' \
@@ -255,7 +250,7 @@ def render_content(tab):
         title = '<b>County-Level View of COVID-19 Death Cases Per 100,000</b><br>' \
                 '<span style="font-size: 12px;">' \
                 '<b>Death</b> cases include presumptive cumulative <b>death cases</b> ' \
-                'per 100,000 population<br> </span>'\
+                'per 100,000 population<br> </span>' \
                 '<span style="font-size: 10px;">' \
                 'Data Source: <a href="https://github.com/CSSEGISandData/COVID-19/blob/master/' \
                 'csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv">' \
@@ -315,7 +310,6 @@ if __name__ == '__main__':
         port=8070,
         host='127.0.0.1'
     )
-
 
 '''
 # Test maps separately

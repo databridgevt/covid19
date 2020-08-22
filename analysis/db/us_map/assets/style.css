@@ -77,6 +77,11 @@ footer {
 .custom-tabs-container {
     width: 100%;
 }
+.my-date-picker-single{
+  border-style: none !important;
+  border-top-left-radius: 3px;
+  background-color: rgb(56,56,56) !important;
+}
 .custom-tabs {
     border-top-left-radius: 3px;
     background-color: #222;
