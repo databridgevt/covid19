@@ -58,7 +58,12 @@ The `Makefile` is a convenient way to execute a bunch of commands, you can run `
 
 ## Team
 
-Introduce yourself [here](https://github.com/databridgevt/covid19/issues/1)
+Introduce yourself [here](hthttps://github.com/databridgevt/covid19/issues/68)
+
+#### Fall 2020
+
+- **Project Lead**: **[Daniel Chen](https://daniel.rbind.io/)**: PhD student at Virginia Tech in [GBCB](https://gbcb.graduateschool.vt.edu/) studying data science and data literacy education in medical, biomedical, and health sciences.
+
 
 #### Summer 2020
 
