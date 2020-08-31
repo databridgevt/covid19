@@ -3,7 +3,7 @@ Data analysis of the 2020 COVID-19 pandemic
 
 ## Getting Started
 
-See [this issue](https://github.com/databridgevt/covid19/issues/3) to get started
+See [this issue](hthttps://github.com/databridgevt/covid19/issues/68) to get started
 
 ## Git Help
 
